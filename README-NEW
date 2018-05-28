@@ -1,10 +1,11 @@
-patchlevel "1.2.sakura.3"
-Added bitmaps of Sakura Kinomoto, who is a character in a comic strip,
-"CARDCAPTOR SAKURA" (CLAMP, Kodansha).
-
-Sakura bitmaps by Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>,
-with the sanction indicated in
+patchlevel "1.2.sakura.4"
+Added bitmaps of Sakura Kinomoto who is a character in a comic strip
+"CARDCAPTOR SAKURA" (CLAMP, Kodansha), with the sanction indicated in
 CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
+
+Modified to support new options, -towindow and -tofocus.
+
+By Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>.
 
 (original README-NEW follows)
 -----------------------------------------------------------------------

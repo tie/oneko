@@ -20,6 +20,7 @@ int	theScreen;			/* スクリーン番号 */
 unsigned int	theDepth;		/* デプス */
 Window	theRoot;			/* ルートウィンドウのＩＤ */
 Window	theWindow;			/* 猫ウィンドウのＩＤ */
+Window	theTarget = NOTDEFINED;		/* 目標ウィンドウのＩＤ */
 Cursor	theCursor;			/* ねずみカーソル */
 
 unsigned int	WindowWidth;		/* ルートウィンドウの幅 */
@@ -67,6 +68,8 @@ int	IdleSpace = 0;			/*   idle	*/
 int	NekoMoyou = NOTDEFINED;		/*   tora	*/
 int	NoShape = NOTDEFINED;		/*   noshape	*/
 int	ReverseVideo = NOTDEFINED;	/*   reverse	*/
+int	ToWindow = NOTDEFINED;		/*   towindow	*/
+int	ToFocus = NOTDEFINED;		/*   tofocus	*/
 int     XOffset=0,YOffset=0;            /* X and Y offsets for cat from mouse
 					   pointer. */
 /*
@@ -418,6 +421,12 @@ GetResources()
   if (ReverseVideo == NOTDEFINED) {
     ReverseVideo = False;
   }
+  if (ToWindow == NOTDEFINED) {
+    ToWindow = False;
+  }
+  if (ToFocus == NOTDEFINED) {
+    ToFocus = False;
+  }
 }
 
 /*
@@ -501,7 +510,7 @@ InitScreen(DisplayName)
   Window			theTempRoot;
   int				WindowPointX;
   int				WindowPointY;
-  unsigned long		BorderWidth;
+  unsigned int		BorderWidth;
   int				event_base, error_base;
 
   if ((theDisplay = XOpenDisplay(DisplayName)) == NULL) {
@@ -542,25 +551,53 @@ InitScreen(DisplayName)
   SetupColors();
   MakeMouseCursor();
 
+  if (ToWindow) {
+    XEvent SelectEvent;
+    int SelectButtons = 0;
+    
+    if (XGrabPointer(theDisplay, theRoot, False,
+		     ButtonPressMask|ButtonReleaseMask, GrabModeSync,
+		     GrabModeAsync, theRoot, theCursor, CurrentTime)
+	!= GrabSuccess) {
+      fprintf(stderr, "%s: Can't grab the mouse.\n", ProgramName);
+      exit(1);
+    }
+
+    while ((theTarget == NOTDEFINED) || (SelectButtons != 0)) {
+      XAllowEvents(theDisplay, SyncPointer, CurrentTime);
+      XWindowEvent(theDisplay, theRoot, ButtonPressMask|ButtonReleaseMask,
+		   &SelectEvent);
+      switch (SelectEvent.type) {
+      case ButtonPress:
+	if (theTarget == NOTDEFINED) {
+	  theTarget = SelectEvent.xbutton.subwindow;
+	  if (theTarget == None) ToWindow = False;
+	}
+	SelectButtons++;
+	break;
+      case ButtonRelease:
+	if (SelectButtons > 0)
+	  SelectButtons--;
+	break;
+      }
+    } 
+    
+    XUngrabPointer(theDisplay, CurrentTime);
+  }
+
   theWindowAttributes.background_pixel = theBackgroundColor.pixel;
   theWindowAttributes.cursor = theCursor;
   theWindowAttributes.override_redirect = True;
 
-  theWindowMask = CWCursor;
-  XChangeWindowAttributes(theDisplay, theRoot, theWindowMask,
-			  &theWindowAttributes);
+  if (!ToWindow) XChangeWindowAttributes(theDisplay, theRoot, CWCursor,
+					 &theWindowAttributes);
 
   theWindowMask = CWBackPixel		|
     CWCursor		|
       CWOverrideRedirect;
 
   theWindow = XCreateWindow(theDisplay, theRoot, 0, 0,
-#ifdef SHAPE
-			    (NoShape == False)? WindowWidth: BITMAP_WIDTH,
-			    (NoShape == False)? WindowHeight: BITMAP_HEIGHT,
-#else SHAPE
 			    BITMAP_WIDTH, BITMAP_HEIGHT,
-#endif SHAPE
 			    0, theDepth, InputOutput, CopyFromParent,
 			    theWindowMask, &theWindowAttributes);
 
@@ -641,38 +678,24 @@ DrawNeko(x, y, DrawAnime)
 
     if ((x != NekoLastX) || (y != NekoLastY)
 		|| (DrawGC != NekoLastGC)) {
+      XWindowChanges	theChanges;
 
+      theChanges.x = x;
+      theChanges.y = y;
+      XConfigureWindow(theDisplay, theWindow, CWX | CWY, &theChanges);
 #ifdef SHAPE
-	if (NoShape == False) {
-	    XShapeCombineMask(theDisplay, theWindow, ShapeBounding,
-		x, y, DrawMask, ShapeSet);
+      if (NoShape == False) {
+	XShapeCombineMask(theDisplay, theWindow, ShapeBounding,
+			  0, 0, DrawMask, ShapeSet);
 
-	    if (DontMapped) {
-		XMapRaised(theDisplay, theWindow);
-		DontMapped = 0;
-	    }
-
-	    XSetTSOrigin(theDisplay, DrawGC, x, y);
-
-	    XFillRectangle(theDisplay, theWindow, DrawGC,
-		x, y, BITMAP_WIDTH, BITMAP_HEIGHT);
-	} else
+      }
 #endif SHAPE
-	{
-	    XWindowChanges	theChanges;
-
-	    theChanges.x = x;
-	    theChanges.y = y;
-	    XConfigureWindow(theDisplay, theWindow, CWX | CWY, &theChanges);
-
-	    if (DontMapped) {
-		XMapWindow(theDisplay, theWindow);
-		DontMapped = 0;
-	    }
-
-	    XFillRectangle(theDisplay, theWindow, DrawGC,
-		0, 0, BITMAP_WIDTH, BITMAP_HEIGHT);
-	}
+      if (DontMapped) {
+	XMapWindow(theDisplay, theWindow);
+	DontMapped = 0;
+      }
+      XFillRectangle(theDisplay, theWindow, DrawGC,
+		     0, 0, BITMAP_WIDTH, BITMAP_HEIGHT);
     }
 
     XFlush(theDisplay);
@@ -691,19 +714,10 @@ DrawNeko(x, y, DrawAnime)
 void
 RedrawNeko()
 {
-#ifdef SHAPE
-    if (NoShape == False) {
-	XFillRectangle(theDisplay, theWindow, NekoLastGC,
-		NekoLastX, NekoLastY,
-		BITMAP_WIDTH, BITMAP_HEIGHT);
-    } else
-#endif SHAPE
-    {
-	XFillRectangle(theDisplay, theWindow, NekoLastGC,
-		0, 0, BITMAP_WIDTH, BITMAP_HEIGHT);
-    }
+  XFillRectangle(theDisplay, theWindow, NekoLastGC,
+		 0, 0, BITMAP_WIDTH, BITMAP_HEIGHT);
 
-    XFlush(theDisplay);
+  XFlush(theDisplay);
 }
 
 
@@ -837,24 +851,66 @@ IsNekoMoveStart()
 void
 CalcDxDy()
 {
-    Window		QueryRoot, QueryChild;
-    int			AbsoluteX, AbsoluteY;
+    Window		QueryRoot, QueryParent;
     int			RelativeX, RelativeY;
-    unsigned int	ModKeyMask;
     double		LargeX, LargeY;
     double		DoubleLength, Length;
-
-    XQueryPointer(theDisplay, theWindow,
-		   &QueryRoot, &QueryChild,
-		   &AbsoluteX, &AbsoluteY,
-		   &RelativeX, &RelativeY,
-		   &ModKeyMask);
 
     PrevMouseX = MouseX;
     PrevMouseY = MouseY;
 
-    MouseX = AbsoluteX+XOffset;
-    MouseY = AbsoluteY+YOffset;
+    if (ToFocus) {
+      int		revert;
+
+      XGetInputFocus(theDisplay, &theTarget, &revert);
+    }
+
+    if (ToWindow
+	||(ToFocus && theTarget != theRoot && theTarget != theWindow
+	   && theTarget != PointerRoot && theTarget != None)) {
+      Window		*QueryChildren;
+      unsigned int	nchild;
+      unsigned int	TargetW, TargetH;
+      unsigned int	TargetBorderW, TargetD;
+
+      for (;;) {
+	XQueryTree(theDisplay, theTarget,
+		   &QueryRoot, &QueryParent, &QueryChildren, &nchild);
+	XFree(QueryChildren);
+	if (QueryParent == QueryRoot) break;
+	theTarget = QueryParent;
+      }
+
+      XGetGeometry(theDisplay, theTarget, &QueryRoot,
+		   &RelativeX, &RelativeY,
+		   &TargetW, &TargetH,
+		   &TargetBorderW, &TargetD);
+
+      MouseX = RelativeX+TargetW/2+XOffset;
+      MouseY = RelativeY+YOffset;
+
+      if ( RelativeX+(int)TargetW <= 0 || RelativeX >= (int)WindowWidth
+	  || RelativeY+(int)TargetH <= 0 || RelativeY >= (int)WindowHeight )
+	theTarget = None;
+    }
+    else {
+      theTarget = None;
+    }
+
+    if (theTarget == NOTDEFINED || theTarget == None) {
+      Window		QueryChild;
+      int		AbsoluteX, AbsoluteY;
+      unsigned int	ModKeyMask;
+
+      XQueryPointer(theDisplay, theWindow,
+		    &QueryRoot, &QueryChild,
+		    &AbsoluteX, &AbsoluteY,
+		    &RelativeX, &RelativeY,
+		    &ModKeyMask);
+
+      MouseX = AbsoluteX+XOffset;
+      MouseY = AbsoluteY+YOffset;
+    }
 
     LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
     LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);
@@ -1165,6 +1221,8 @@ char	*message[] = {
 "-speed <dots>",
 "-time <microseconds>",
 "-idle <dots>",
+"-towindow	       	: Neko chases any window (include another oneko).",
+"-tofocus      		: Neko chases your focus window",
 "-rv			: Reverse video. (effects monochrome display only)",
 "-position <geometry>   : as position of geometry, relative to mouse pointer.",
 "-debug                 : puts you in synchronous mode.",
@@ -1246,6 +1304,14 @@ GetArguments(argc, argv, theDisplayName)
 	fprintf(stderr, "%s: -idle option error.\n", ProgramName);
 	exit(1);
       }
+    }
+    else if (strcmp(argv[ArgCounter], "-towindow") == 0) {
+      ToWindow = True;
+      ToFocus = False;
+    }
+    else if (strcmp(argv[ArgCounter], "-tofocus") == 0) {
+      ToFocus = True;
+      ToWindow = False;
     }
     else if ((strcmp(argv[ArgCounter], "-fg") == 0) ||
 	     (strcmp(argv[ArgCounter], "-foreground") == 0)) {

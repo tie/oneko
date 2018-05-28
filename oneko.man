@@ -17,7 +17,9 @@ The program oneko creates a cute cat chasing around your mouse cursor.
 [\fB-help\fP] [\fB-tora\fP]
 [\fB-dog\fP] [\fB-bsd_daemon\fP] [\fB-bsd\fP] [\fB-sakura\fP]
 [\fB-time\fP \fIn\fP] [\fB-speed\fP \fIn\fP]
-[\fB-idle\fP \fIn\fP] [\fB-rv\fP] [\fB-noshape\fP] [\fB-fg\fP] [\fB-bg\fP]
+[\fB-idle\fP \fIn\fP] [\fB-towindow\fP] [\fB-tofocus\fP]
+[\fB-position\fP \fIgeometry\fP]
+[\fB-rv\fP] [\fB-noshape\fP] [\fB-fg\fP] [\fB-bg\fP]
 .SH DESCRIPTION
 .I oneko
 changes your mouse cursor into mouse and creates a little cute cat and the
@@ -57,6 +59,22 @@ Default is 16.
 .BI \-idle " speed"
 Specify the threshold of the speed which ``mouse'' running away
 to wake cat up.
+.TP
+.B -towindow
+When
+.I oneko
+starts with this option, you must select a window by cursor.
+Then cat appears and chases the window instead of mouse.
+You can select another running
+.I oneko
+as the target window.
+If root window is selected, cat chases mouse as usually.
+.TP
+.B -tofocus
+Makes cat chase focus window instead of mouse.
+.TP
+.BI \-position " geometry"
+Specify X and Y offsets for cat from mouse in pixels.
 .TP
 .B -rv
 Reverse background color and foreground color.
