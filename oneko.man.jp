@@ -1,7 +1,7 @@
 .TH ONEKO 6
-.SH $@L>>N(J oneko
-$@$+$o$$$$G-$,%^%&%9%+!<%=%k$rDI$$$+$1$k%W%m%0%i%`(J
-.SH $@=q<0(J
+.SH 名称 oneko
+かわいい猫がマウスカーソルを追いかけるプログラム
+.SH 書式
 .B oneko
 [\fB-help\fP] [\fB-tora\fP]
 [\fB-dog\fP] [\fB-bsd_daemon\fP] [\fB-bsd\fP]
@@ -11,139 +11,139 @@
 [\fB-tofocus\fP]
 [\fB-position\fP \fIgeometry\fP]
 [\fB-rv\fP] [\fB-noshape\fP] [\fB-fg\fP] [\fB-bg\fP]
-.SH $@2r@b(J
+.SH 解説
 .I oneko
-$@$r<B9T$9$k$H%^%&%9%+!<%=%k$O$M$:$_$H$J$j!"$=$7$F>.$5$J$+$o$$$$G-$,$=$N(J
-$@%^%&%9%+!<%=%k$rDI$$$+$1$O$8$a$^$9!#(J
-$@$M$:$_$KDI$$$D$/$HG-$OL2$j$O$8$a$^$9!#(J
-.SS $@%*%W%7%g%s(J
+を実行するとマウスカーソルはねずみとなり、そして小さなかわいい猫がその
+マウスカーソルを追いかけはじめます。
+ねずみに追いつくと猫は眠りはじめます。
+.SS オプション
 .TP
 .B -help
-$@;H$$J}$N4JC1$J@bL@$r=PNO$7$^$9!#(J
+使い方の簡単な説明を出力します。
 .TP
 .B -tora
-$@G-$r%H%iG-$K$7$^$9!#(J
+猫をトラ猫にします。
 .TP
 .B -dog
-$@G-$KBe$o$j8$$,Av$j$^$9!#(J
+猫に代わり犬が走ります。
 .TP
 .B -bsd_daemon
-$@G-$KBe$o$j(J 4.3BSD $@%G!<%b%s$,Av$j$^$9!#(J
+猫に代わり 4.3BSD デーモンが走ります。
 .TP
 .B -bsd
 .B -bsd_daemon
-$@$KF1$8!#(J
+に同じ。
 .TP
 .B -sakura
-$@G-$KBe$o$jLZG7K\:y$,Av$j$^$9!#(J
+猫に代わり木之本桜が走ります。
 .TP
 .B -tomoyo
-$@G-$KBe$o$jBgF;;{CN@$$,Av$j$^$9!#(J
+猫に代わり大道寺知世が走ります。
 .TP
 .BI \-time " interval"
-$@G-%"%K%a!<%7%g%s$N4V3V$r;XDj$7$^$9!#(J
-$@%G%U%)%k%HCM$O(J 125000 $@$GC10L$O%^%$%/%mIC$G$9!#(J
-$@$3$NCM$r$h$j>.$5$/;XDj$9$k$HG-$O$h$jB.$/Av$j$^$9!#(J
+猫アニメーションの間隔を指定します。
+デフォルト値は 125000 で単位はマイクロ秒です。
+この値をより小さく指定すると猫はより速く走ります。
 .TP
 .BI \-speed " distance"
-$@G-$,0l$D$NF0:n$G0\F0$9$k5wN%$r%I%C%H$G;XDj$7$^$9!#(J
-$@%G%U%)%k%HCM$O(J 16 $@$G$9!#(J
+猫が一つの動作で移動する距離をドットで指定します。
+デフォルト値は 16 です。
 .TP
 .BI \-idle " speed"
-$@F($2$k$M$:$_$,G-$NL\$r3P$^$5$;$k$K;j$k%9%T!<%I$r;XDj$7$^$9!#(J
+逃げるねずみが猫の目を覚まさせるに至るスピードを指定します。
 .TP
 .BI \-name " name"
-$@G-$N%&%#%s%I%&L>$r;XDj$7$^$9!#(J
+猫のウィンドウ名を指定します。
 .TP
 .B -towindow
 .I oneko
-$@$,$3$N%*%W%7%g%s$H$H$b$K5/F0$5$l$?;~$O!"$"$J$?$O%+!<%=%k$G%&%#%s%I%&$r(J
-$@A*Br$7$J$1$l$P$J$j$^$;$s!#(J
-$@$9$k$HG-$,$"$i$o$l$F!"$M$:$_$NBe$o$j$K$=$N%&%#%s%I%&$rDI$$$+$1$O$8$a$^(J
-$@$9!#(J
-$@$9$G$K5/F0$7$F$$$kB>$N(J
+がこのオプションとともに起動された時は、あなたはカーソルでウィンドウを
+選択しなければなりません。
+すると猫があらわれて、ねずみの代わりにそのウィンドウを追いかけはじめま
+す。
+すでに起動している他の
 .I oneko
-$@$rL\I8$K$9$k$3$H$b$G$-$^$9!#(J
-$@%k!<%H%&%#%s%I%&$,A*Br$5$l$?>l9g$O!"DL>o$N$h$&$K%^%&%9$rDI$$$+$1$^$9!#(J
-$@L\I8%&%#%s%I%&$,JD$8$i$l$F$O$$$J$$$b$N$N8+$($J$$;~$K$O!"DL>o$N$h$&$K%^(J
-$@%&%9$rDI$$$+$1$^$9!#(J
-$@L\I8%&%#%s%I%&$,JD$8$i$l$k$H%W%m%0%i%`$O=*N;$7$^$9!#(J
+を目標にすることもできます。
+ルートウィンドウが選択された場合は、通常のようにマウスを追いかけます。
+目標ウィンドウが閉じられてはいないものの見えない時には、通常のようにマ
+ウスを追いかけます。
+目標ウィンドウが閉じられるとプログラムは終了します。
 .TP
 .BI \-toname " name"
-$@G-$O;XDj$5$l$?L>A0$N%&%#%s%I%&$r$M$:$_$NBe$o$j$KDI$$$+$1$^$9!#(J
-$@$9$G$K5/F0$7$F$$$kB>$N(J
+猫は指定された名前のウィンドウをねずみの代わりに追いかけます。
+すでに起動している他の
 .I oneko
-$@$rL\I8$K$9$k$3$H$b$G$-$^$9!#(J
-$@L\I8%&%#%s%I%&$,JD$8$i$l$F$O$$$J$$$b$N$N8+$($J$$;~$K$O!"DL>o$N$h$&$K%^(J
-$@%&%9$rDI$$$+$1$^$9!#(J
-$@L\I8%&%#%s%I%&$,JD$8$i$l$k$H%W%m%0%i%`$O=*N;$7$^$9!#(J
+を目標にすることもできます。
+目標ウィンドウが閉じられてはいないものの見えない時には、通常のようにマ
+ウスを追いかけます。
+目標ウィンドウが閉じられるとプログラムは終了します。
 .TP
 .B -tofocus
-$@G-$O%U%)!<%+%9%&%#%s%I%&$K8~$+$C$FAv$j!"$=$7$F$=$N>eIt$rAv$j$^$9!#(J
-$@%U%)!<%+%9%&%#%s%I%&$,8+$($J$$;~$K$O!"DL>o$N$h$&$K%^%&%9$rDI$$$+$1$^$9!#(J
+猫はフォーカスウィンドウに向かって走り、そしてその上部を走ります。
+フォーカスウィンドウが見えない時には、通常のようにマウスを追いかけます。
 .TP
 .BI \-position " geometry"
-X $@$H(J Y $@$N%*%U%;%C%H$r;XDj$7$FG-$N$M$:$_$X$NAjBP0LCV$rD4@0$7$^$9!#(J
+X と Y のオフセットを指定して猫のねずみへの相対位置を調整します。
 .TP
 .B -rv
-$@GX7J?'$HA07J?'$rH?E>$7$^$9!#(J
+背景色と前景色を反転します。
 .TP
 .B -noshape
-SHAPE extension $@$r;H$$$^$;$s!#(J
+SHAPE extension を使いません。
 .TP
 .BI \-fg " color"
-$@A07J?'!#(J
+前景色。
 .TP
 .BI \-bg " color"
-$@GX7J?'!#(J
-.SS $@%j%=!<%9(J
-$@%"%W%j%1!<%7%g%sL>$O(J neko $@$b$7$/$O(J tora $@$G!"%/%i%9L>$O(J Oneko $@$G$9!#(J
+背景色。
+.SS リソース
+アプリケーション名は neko もしくは tora で、クラス名は Oneko です。
 .TP
 .B tora
-$@%H%iG-$rAv$i$;$?$$>l9g$K$O(J True $@$H$7$^$9!#(J
+トラ猫を走らせたい場合には True とします。
 .TP
 .B time
-$@%"%K%a!<%7%g%s$N4V3V$r%^%$%/%mIC$G@_Dj$7$^$9!#(J
+アニメーションの間隔をマイクロ秒で設定します。
 .TP
 .B speed
-$@0\F05wN%$r%T%/%;%k$G;XDj$7$^$9!#(J
+移動距離をピクセルで指定します。
 .TP
 .B idle
-$@F($2$k$M$:$_$,G-$NL\$r3P$^$5$;$k$K;j$k%9%T!<%I$r;XDj$7$^$9!#(J
+逃げるねずみが猫の目を覚まさせるに至るスピードを指定します。
 .TP
 .B noshape
-SHAPE extension $@$r;H$$$?$/$J$$>l9g(J True $@$H$7$^$9!#(J
+SHAPE extension を使いたくない場合 True とします。
 .TP
 .B reverse
-$@A07J?'$HGX7J?'$r8r49$7$?$$>l9g(J True $@$H$7$^$9!#(J
+前景色と背景色を交換したい場合 True とします。
 .TP
 .B foreground
-$@A07J?'!#(J
+前景色。
 .TP
 .B background
-$@GX7J?'!#(J
-.SH $@Cm<a(J
-$@$3$N%W%m%0%i%`$,(J XGetDefault $@$rMxMQ$7$F$$$k0J>e!"(J neko.resouce $@$N7A<0(J
-$@$r;H$&$3$H$KN10U$7$F$/$@$5$$!#(J
-$@%O!<%I%j%s%/$"$k$$$O%=%U%H%j%s%/$K$h$C$F!"$3$N%W%m%0%i%`$r(J tora $@$H$7$F(J
-$@5/F0$7$?>l9g$K$O!"%G%U%)%k%H$G(J \fB-tora\fP $@%*%W%7%g%s$,M-8z$H$J$j$^$9!#(J
+背景色。
+.SH 注釈
+このプログラムが XGetDefault を利用している以上、 neko.resouce の形式
+を使うことに留意してください。
+ハードリンクあるいはソフトリンクによって、このプログラムを tora として
+起動した場合には、デフォルトで \fB-tora\fP オプションが有効となります。
 .PP
-BSD $@%G!<%b%s$O(J  Marshall Kirk McKusick $@;a$NCx:nJ*$G$9!#$9$Y$F$N8"Mx$O(J
-$@J];}$5$l$F$$$^$9!#(J
+BSD デーモンは  Marshall Kirk McKusick 氏の著作物です。すべての権利は
+保持されています。
 BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
 .PP
-$@LZG7K\:y$*$h$SBgF;;{CN@$$OL!2h!X%+!<%I%-%c%W%?!<$5$/$i!Y!J(JCLAMP, $@9VCL(J
-$@<R!K$N%-%c%i%/%?!<$G$"$j!"(JCLAMP $@3X1`EE;RJ,9;(J
-$@!J(Jhttp://www.clamp.f-2.co.jp/$@!K$K<($5$l$F$$$kMFG'$N$b$H$KMxMQ$5$l$F$$(J
-$@$^$9!#(J
-.SH $@:n<T(J
-$@%*%j%8%J%k$N(J
+木之本桜および大道寺知世は漫画『カードキャプターさくら』（CLAMP, 講談
+社）のキャラクターであり、CLAMP 学園電子分校
+（http://www.clamp.f-2.co.jp/）に示されている容認のもとに利用されてい
+ます。
+.SH 作者
+オリジナルの
 .I xneko
-$@$O(J Masayuki Koba $@$K$h$C$F=q$+$l!"(J
-$@$=$7$F(J Tatsuya Kato $@$K$h$C$F2~JQ$5$l(J
+は Masayuki Koba によって書かれ、
+そして Tatsuya Kato によって改変され
 .I oneko
-$@$H$J$j$^$7$?!#(J
-$@$=$N8e(J John Lerchey $@$H(J Eric Anderson $@!"(J Toshihiro Kanda $@!"$*$h$S(J 
-Kiichiroh Mukose $@$K$h$C$F$5$i$K2~JQ$5$l$^$7$?!#(J
-.SH $@J]<i<T(J
-$@LdBj$dITL@$JE@$,$4$6$$$^$7$?$i(J mukose@hbar.mp.es.osaka-u.ac.jp $@$^$G!#(J
+となりました。
+その後 John Lerchey と Eric Anderson 、 Toshihiro Kanda 、および 
+Kiichiroh Mukose によってさらに改変されました。
+.SH 保守者
+問題や不明な点がございましたら mukose@hbar.mp.es.osaka-u.ac.jp まで。

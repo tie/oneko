@@ -17,81 +17,81 @@
 					(mukose@hbar.mp.es.osaka-u.ac.jp)
 
 
-Kato $@;a$K$h$k(J oneko $@$b!"B?$/$N?M$?$A$N<j$K$h$C$F$5$i$K@.D9$7$F$$$^$9!#(J
-$@$=$3$G(J README $@$X$NJdB-$H$7$F$3$N%I%-%e%a%s%H$r=q$-$^$9!#$^$:(J README $@$*(J
-$@$h$S(J README-NEW $@$r$*FI$_$/$@$5$$!#(J
+Kato 氏による oneko も、多くの人たちの手によってさらに成長しています。
+そこで README への補足としてこのドキュメントを書きます。まず README お
+よび README-NEW をお読みください。
 
-$@!c%P!<%8%g%s%"%C%W$K$h$k5!G=3HD%!d(J
+＜バージョンアップによる機能拡張＞
 
-$@!}(J $@G-$r8$$d(J BSD $@%G!<%b%s$K$9$k5!G=$,DI2C$5$l$^$7$?!#$^$?!"L!2h!X%+!<%I(J
-   $@%-%c%W%?!<$5$/$i!Y!J(JCLAMP, $@9VCL<R!K$N%-%c%i%/%?!<!"LZG7K\:y$dBgF;;{(J
-   $@CN@$$K$b$J$j$^$9!#<B9T;~$K$=$l$>$l(J
+◎ 猫を犬や BSD デーモンにする機能が追加されました。また、漫画『カード
+   キャプターさくら』（CLAMP, 講談社）のキャラクター、木之本桜や大道寺
+   知世にもなります。実行時にそれぞれ
 
    % oneko -dog
-   % oneko -bsd_daemon $@$b$7$/$O(J -bsd
+   % oneko -bsd_daemon もしくは -bsd
    % oneko -sakura
    % oneko -tomoyo
 
-   $@$H$9$k$H%S%C%H%^%C%W$,JQ$o$j$^$9!#(J
+   とするとビットマップが変わります。
 
-   BSD $@%G!<%b%s$O(J Marshall Kirk McKusick $@;a$NCx:nJ*$G$9!#$3$N%W%m%0%i(J
-   $@%`$O(J McKusick $@;a$N>5Bz$rF@$F$3$l$r;HMQ$7$F$$$^$9!#(J
+   BSD デーモンは Marshall Kirk McKusick 氏の著作物です。このプログラ
+   ムは McKusick 氏の承諾を得てこれを使用しています。
 
-   $@!X%+!<%I%-%c%W%?!<$5$/$i!Y$*$h$S$=$N%-%c%i%/%?!<$O(J CLAMP $@$NCx:nJ*$G(J
-   $@$9!#$?$@$7$=$N%-%c%i%/%?!<$OF1?M;oEy$K$*$1$kMxMQ$,MFG'$5$l$F$$$^$9!#(J 
-   CLAMP $@3X1`EE;RJ,9;!J(Jhttp://www.clamp.f-2.co.jp/$@!K$r$4;2>H$/$@$5$$!#(J
+   『カードキャプターさくら』およびそのキャラクターは CLAMP の著作物で
+   す。ただしそのキャラクターは同人誌等における利用が容認されています。 
+   CLAMP 学園電子分校（http://www.clamp.f-2.co.jp/）をご参照ください。
 
-$@!}(J $@%3%s%Q%$%i$K(J gcc $@$r;H$&$HF0$+$J$$LdBj$O!"8=:_$G$O8+$i$l$J$/$J$C$?$h(J
-   $@$&$G$9!#(JImakefile $@$N(J CC=cc $@$O%3%a%s%H%"%&%H$5$l$^$7$?!#(J
+◎ コンパイラに gcc を使うと動かない問題は、現在では見られなくなったよ
+   うです。Imakefile の CC=cc はコメントアウトされました。
 
-$@!}(J $@G-$N%^%&%9$X$NAjBP0LCV$r;XDj$G$-$k$h$&$K$J$j$^$7$?!#(J-position $@%*%W(J
-   $@%7%g%s$r$*;H$$$/$@$5$$!#(J
+◎ 猫のマウスへの相対位置を指定できるようになりました。-position オプ
+   ションをお使いください。
 
-$@!}(J $@%&%#%s%I%&L>$r;XDj$G$-$k$h$&$K$J$j$^$7$?!#(J-name $@%*%W%7%g%s$r$*;H$$(J
-   $@$/$@$5$$!#(J
+◎ ウィンドウ名を指定できるようになりました。-name オプションをお使い
+   ください。
 
-$@!}(J $@%^%&%90J30$KG$0U$N%&%#%s%I%&$rDI$$$+$1$k$3$H$,$G$-$k$h$&$K$J$j$^$7(J
-   $@$?!#$9$G$KAv$C$F$$$kB>$N(J oneko $@$rL\I8$K$9$k$3$H$b$G$-$^$9!#(J
-   -towindow $@%*%W%7%g%s$b$7$/$O(J -toname $@%*%W%7%g%s$r$*;H$$$/$@$5$$!#(J
+◎ マウス以外に任意のウィンドウを追いかけることができるようになりまし
+   た。すでに走っている他の oneko を目標にすることもできます。
+   -towindow オプションもしくは -toname オプションをお使いください。
 
    % oneko -name tama
    % oneko -dog -toname tama
 
-   $@$H$9$k$H!"AM$rG-$,DI$$$+$1!"$=$NG-$r8$$,DI$$$+$1$^$9!#(J
+   とすると、鼠を猫が追いかけ、その猫を犬が追いかけます。
 
-$@!}(J $@%U%)!<%+%9%&%#%s%I%&$N>eIt$rAv$i$;$k$3$H$,$G$-$k$h$&$K$J$j$^$7$?!#(J
-   -tofocus $@%*%W%7%g%s$r$*;H$$$/$@$5$$!#(J
+◎ フォーカスウィンドウの上部を走らせることができるようになりました。
+   -tofocus オプションをお使いください。
 
-$@!c?7$7$$5!G=$N;HMQJ}K!!d(J
+＜新しい機能の使用方法＞
 
--dog		$@G-$KBe$o$j8$$,Av$j$^$9!#(J
+-dog		猫に代わり犬が走ります。
 
--bsd_daemon	$@G-$KBe$o$j(J 4.3BSD $@%G!<%b%s$,Av$j$^$9!#(J
+-bsd_daemon	猫に代わり 4.3BSD デーモンが走ります。
 
--bsd		-bsd_daemon $@$KF1$8!#(J
+-bsd		-bsd_daemon に同じ。
 
--sakura		$@G-$KBe$o$jLZG7K\:y$,Av$j$^$9!#(J
+-sakura		猫に代わり木之本桜が走ります。
 
--tomoyo		$@G-$KBe$o$jBgF;;{CN@$$,Av$j$^$9!#(J
+-tomoyo		猫に代わり大道寺知世が走ります。
 
--name <name>	$@G-$N%&%#%s%I%&L>$r;XDj$7$^$9!#(J
+-name <name>	猫のウィンドウ名を指定します。
 
--towindow	$@5/F08e$K%^%&%9$GA*Br$5$l$?%&%#%s%I%&$r%^%&%9$NBe$o$j$K(J
-		$@DI$$$+$1$^$9!#(J
+-towindow	起動後にマウスで選択されたウィンドウをマウスの代わりに
+		追いかけます。
 
--toname <name>	$@;XDj$5$l$?L>A0$N%&%#%s%I%&$r%^%&%9$NBe$o$j$KDI$$$+$1$^(J
-		$@$9!#(J
+-toname <name>	指定された名前のウィンドウをマウスの代わりに追いかけま
+		す。
 
--tofocus	$@G-$O%U%)!<%+%9%&%#%s%I%&$K8~$+$C$FAv$j!"$=$7$F$=$N>eIt(J
-		$@$rAv$j$^$9!#(J
+-tofocus	猫はフォーカスウィンドウに向かって走り、そしてその上部
+		を走ります。
 
 -position <geometry>
-		$@G-$N%^%&%9$H$NAjBP0LCV$rD4@a$7$^$9!#%G%U%)%k%HCM$+$i$N(J
-		$@:9$G;XDj$7$^$9!#(J
+		猫のマウスとの相対位置を調節します。デフォルト値からの
+		差で指定します。
 
-README $@$K5s$2$i$l$F$$$k=>Mh$N%*%W%7%g%s$bA4$FM-8z$G$9!#(J
+README に挙げられている従来のオプションも全て有効です。
 
-$@3F%S%C%H%^%C%W$4$H$K@_Dj$5$l$F$$$k%G%U%)%k%HCM$O(J
+各ビットマップごとに設定されているデフォルト値は
 
 		time	speed	idle	position
 default neko	125000	13	6	+0+0
@@ -101,7 +101,7 @@ bsd_daemon	300000	16	6	+22+20
 sakura		125000	13	6	+0+0
 tomoyo		125000	10	6	+32+32
 
-$@$J$*!"G-$K%-!<F~NO$rEO$9$3$H$,2DG=$J>l9g$K$O!"(JMeta (Alt) + q $@$K$h$C$F(J
-$@=*N;$5$;$k$3$H$b$G$-$^$9!#(J
+なお、猫にキー入力を渡すことが可能な場合には、Meta (Alt) + q によって
+終了させることもできます。
 
-$@LdBj$dITL@$JE@$,$4$6$$$^$7$?$i(J mukose@hbar.mp.es.osaka-u.ac.jp $@$^$G!#(J
+問題や不明な点がございましたら mukose@hbar.mp.es.osaka-u.ac.jp まで。

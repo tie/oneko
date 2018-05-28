@@ -1,11 +1,11 @@
 /*
- *	oneko  -  X11 $@G-(J
+ *	oneko  -  X11 猫
  *
  *	$Header: /home/sun/unix/kato/xsam/oneko/oneko.h,v 1.4 90/10/18 16:52:57 kato Exp Locker: kato $
  */
 
 /*
- *	$@%$%s%/%k!<%I%U%!%$%k(J
+ *	インクルードファイル
  */
 
 #include <X11/Xlib.h>
@@ -22,13 +22,13 @@
 
 
 /*
- *	$@%+!<%=%k%S%C%H%^%C%W%U%!%$%k$NFI$_9~$_(J
+ *	カーソルビットマップファイルの読み込み
  */
 
 #include "cursors/cursor.include"
 
 /*
- *	$@IaDL$NG-MQ%S%C%H%^%C%W%U%!%$%k$NFI$_9~$_(J
+ *	普通の猫用ビットマップファイルの読み込み
  *      These include files in the directories noted.
  *      These are the bitmaps.
  */
@@ -49,60 +49,60 @@
 #include "bitmasks/tomoyo/tomoyo.mask.include"
 
 /*
- *	$@Dj?tDj5A(J
+ *	定数定義
  */
 
-#define	BITMAP_WIDTH		32	/* $@#1%-%c%i%/%?$NI}(J ($@%T%/%;%k(J) */
-#define	BITMAP_HEIGHT		32	/* $@#1%-%c%i%/%?$N9b$5(J ($@%T%/%;%k(J) */
+#define	BITMAP_WIDTH		32	/* １キャラクタの幅 (ピクセル) */
+#define	BITMAP_HEIGHT		32	/* １キャラクタの高さ (ピクセル) */
 
 #define	AVAIL_KEYBUF		255
 #define	MAX_TICK		9999		/* Odd Only! */
 
-#define	DEFAULT_FOREGROUND	"black"		/* $@%U%)%"%0%i%&%s%I%+%i!<(J */
-#define	DEFAULT_BACKGROUND	"white"		/* $@%P%C%/%0%i%&%s%I%+%i!<(J */
+#define	DEFAULT_FOREGROUND	"black"		/* フォアグラウンドカラー */
+#define	DEFAULT_BACKGROUND	"white"		/* バックグラウンドカラー */
 
 /*
- *	$@G-$N>uBVDj?t(J
+ *	猫の状態定数
  */
 
-#define	NEKO_STOP		0	/* $@N)$A;_$^$C$?(J */
-#define	NEKO_JARE		1	/* $@4i$r@v$C$F$$$k(J */
-#define	NEKO_KAKI		2	/* $@F,$rA_$$$F$$$k(J */
-#define	NEKO_AKUBI		3	/* $@$"$/$S$r$7$F$$$k(J */
-#define	NEKO_SLEEP		4	/* $@?2$F$7$^$C$?(J */
-#define	NEKO_AWAKE		5	/* $@L\$,3P$a$?(J */
-#define	NEKO_U_MOVE		6	/* $@>e$K0\F0Cf(J */
-#define	NEKO_D_MOVE		7	/* $@2<$K0\F0Cf(J */
-#define	NEKO_L_MOVE		8	/* $@:8$K0\F0Cf(J */
-#define	NEKO_R_MOVE		9	/* $@1&$K0\F0Cf(J */
-#define	NEKO_UL_MOVE		10	/* $@:8>e$K0\F0Cf(J */
-#define	NEKO_UR_MOVE		11	/* $@1&>e$K0\F0Cf(J */
-#define	NEKO_DL_MOVE		12	/* $@:82<$K0\F0Cf(J */
-#define	NEKO_DR_MOVE		13	/* $@1&2<$K0\F0Cf(J */
-#define	NEKO_U_TOGI		14	/* $@>e$NJI$r0z$CA_$$$F$$$k(J */
-#define	NEKO_D_TOGI		15	/* $@2<$NJI$r0z$CA_$$$F$$$k(J */
-#define	NEKO_L_TOGI		16	/* $@:8$NJI$r0z$CA_$$$F$$$k(J */
-#define	NEKO_R_TOGI		17	/* $@1&$NJI$r0z$CA_$$$F$$$k(J */
+#define	NEKO_STOP		0	/* 立ち止まった */
+#define	NEKO_JARE		1	/* 顔を洗っている */
+#define	NEKO_KAKI		2	/* 頭を掻いている */
+#define	NEKO_AKUBI		3	/* あくびをしている */
+#define	NEKO_SLEEP		4	/* 寝てしまった */
+#define	NEKO_AWAKE		5	/* 目が覚めた */
+#define	NEKO_U_MOVE		6	/* 上に移動中 */
+#define	NEKO_D_MOVE		7	/* 下に移動中 */
+#define	NEKO_L_MOVE		8	/* 左に移動中 */
+#define	NEKO_R_MOVE		9	/* 右に移動中 */
+#define	NEKO_UL_MOVE		10	/* 左上に移動中 */
+#define	NEKO_UR_MOVE		11	/* 右上に移動中 */
+#define	NEKO_DL_MOVE		12	/* 左下に移動中 */
+#define	NEKO_DR_MOVE		13	/* 右下に移動中 */
+#define	NEKO_U_TOGI		14	/* 上の壁を引っ掻いている */
+#define	NEKO_D_TOGI		15	/* 下の壁を引っ掻いている */
+#define	NEKO_L_TOGI		16	/* 左の壁を引っ掻いている */
+#define	NEKO_R_TOGI		17	/* 右の壁を引っ掻いている */
 
 /*
- *	$@G-$N%"%K%a!<%7%g%s7+$jJV$72s?t(J
+ *	猫のアニメーション繰り返し回数
  */
 
 #define	NEKO_STOP_TIME		4
 #define	NEKO_JARE_TIME		10
 #define	NEKO_KAKI_TIME		4
-#define	NEKO_AKUBI_TIME		6	/* $@$b$H$b$H#3$@$C$?$1$ID9$$J}$,$$$$(J */
+#define	NEKO_AKUBI_TIME		6	/* もともと３だったけど長い方がいい */
 #define	NEKO_AWAKE_TIME		3
 #define	NEKO_TOGI_TIME		10
 
 #define	PI_PER8			((double)3.1415926535/(double)8)
 
-#define	MAXDISPLAYNAME		(64 + 5)	/* $@%G%#%9%W%l%$L>$ND9$5(J */
+#define	MAXDISPLAYNAME		(64 + 5)	/* ディスプレイ名の長さ */
 
 #define	NOTDEFINED		(-1)
 
 /*
- *	$@%^%/%mDj5A(J
+ *	マクロ定義
  */
 
 #define IsTrue(str)     (strcmp((str), "true") == 0)
