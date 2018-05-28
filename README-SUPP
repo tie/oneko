@@ -1,22 +1,25 @@
 		oneko - Neko runs over the windows.
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		A supplement to README for patchlevel 1.2.sakura.5
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-				Original program written by
+				Original program "xneko" written by
 							Masayuki Koba
-				Modified by
+				Modified to program "oneko" by
 							Tatsuya Kato
+				Modified further by
 							John Lerchey
 							Eric Anderson
 							Toshihiro Kanda
 							Kiichiroh Mukose
-
 				This document written by
 					Kiichiroh Mukose
 					(mukose@hbar.mp.es.osaka-u.ac.jp)
 
 
 Kato 氏による oneko も、多くの人たちの手によってさらに成長しています。
-README および README-NEW をお読みください。
+そこで README への補足としてこのドキュメントを書きます。まず README お
+よび README-NEW をお読みください。
 
 ＜バージョンアップによる機能拡張＞
 
@@ -36,20 +39,20 @@ README および README-NEW をお読みください。
 
    『カードキャプターさくら』およびそのキャラクターは CLAMP の著作物で
    す。ただしそのキャラクターは同人誌等における利用が容認されています。 
-   CLAMP 学園電子分校 (http://www.clamp.f-2.co.jp/) をご参照ください。
+   CLAMP 学園電子分校（http://www.clamp.f-2.co.jp/）をご参照ください。
 
 ◎ コンパイラに gcc を使うと動かない問題は、現在では見られなくなったよ
    うです。Imakefile の CC=cc はコメントアウトされました。
 
-◎ 猫のマウスへの相対位置を設定できるようになりました。-position オプ
+◎ 猫のマウスへの相対位置を指定できるようになりました。-position オプ
    ションをお使いください。
 
 ◎ ウィンドウ名を指定できるようになりました。-name オプションをお使い
    ください。
 
-◎ マウス以外にウィンドウを追いかけることができるようになりました。す
-   でに走っている他の oneko を目標にすることもできます。-towindow オプ
-   ションもしくは -toname オプションをお使いください。
+◎ マウス以外に任意のウィンドウを追いかけることができるようになりまし
+   た。すでに走っている他の oneko を目標にすることもできます。
+   -towindow オプションもしくは -toname オプションをお使いください。
 
    % oneko -name tama
    % oneko -dog -toname tama
@@ -82,12 +85,25 @@ README および README-NEW をお読みください。
 -tofocus	猫はフォーカスウィンドウの上部を走ります。
 
 -position <geometry>
-		猫のマウスからの相対位置を設定します。
+		猫のマウスとの相対位置を調節します。デフォルト値からの
+		差で指定します。
 
-＜ばぐ、もしくは奇妙な仕様＞
+README に挙げられている従来のオプションも全て有効です。
 
--towindow や -toname が目標をロストするとエラー終了する。しかし、11 匹
-の猫と 101 匹の犬と 900 人の桜さんを数珠つなぎしても一発で終了できる、
-という利点もあると考えて、放置しています。
+参考までにキャラクターごとのデフォルト値は
+
+		time	speed	idle	position
+default neko	125000	13	6	+0+0
+tora		125000	16	6	+0+0
+dog		125000	10	6	+0+0
+bsd_daemon	300000	16	6	+22+20
+sakura		125000	13	6	+0+0
+tomoyo		125000	10	6	+32+32
+
+-fg と -bg による配色の指定は、とくに -tofocus 時には、タイトルバーに
+揃えておくといい感じです。
+
+なお、猫に Meta(Alt)+q を入力することによって終了させることができます。
+
 
 問題や不明な点がございましたら mukose@hbar.mp.es.osaka-u.ac.jp まで。

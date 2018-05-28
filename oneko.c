@@ -664,11 +664,16 @@ InitScreen(DisplayName)
       unsigned int	nchild;
 
       for (;;) {
-	XQueryTree(theDisplay, theTarget,
-		   &QueryRoot, &QueryParent, &QueryChildren, &nchild);
-	XFree(QueryChildren);
-	if (QueryParent == QueryRoot) break;
-	theTarget = QueryParent;
+	if (XQueryTree(theDisplay, theTarget, &QueryRoot,
+		       &QueryParent, &QueryChildren, &nchild)) {
+	  XFree(QueryChildren);
+	  if (QueryParent == QueryRoot) break;
+	  theTarget = QueryParent;
+	}
+	else {
+	  fprintf(stderr, "%s: Target Lost.\n",ProgramName);
+	  exit(1);
+	}
       }
     }
   }
@@ -972,11 +977,16 @@ CalcDxDy()
 	unsigned int	nchild;
 
 	for (;;) {
-	  XQueryTree(theDisplay, theTarget,
-		     &QueryRoot, &QueryParent, &QueryChildren, &nchild);
-	  XFree(QueryChildren);
-	  if (QueryParent == QueryRoot) break;
-	  theTarget = QueryParent;
+	  if (XQueryTree(theDisplay, theTarget, &QueryRoot,
+			 &QueryParent, &QueryChildren, &nchild)) {
+	    XFree(QueryChildren);
+	    if (QueryParent == QueryRoot) break;
+	    theTarget = QueryParent;
+	  }
+	  else {
+	    theTarget = None;
+	    break;
+	  }
 	}
       }
       else {
@@ -985,9 +995,16 @@ CalcDxDy()
     }
 
     if ((ToWindow || ToFocus) && theTarget != None) {
+      int			status;
       XWindowAttributes		theTargetAttributes;
 
-      XGetWindowAttributes(theDisplay, theTarget, &theTargetAttributes);
+      status =
+	XGetWindowAttributes(theDisplay, theTarget, &theTargetAttributes);
+
+      if (ToWindow && status == 0) {
+	fprintf(stderr, "%s: Target Lost.\n",ProgramName);
+	exit(1);
+      }
 
       if (theTargetAttributes.x+theTargetAttributes.width > 0 
 	  && theTargetAttributes.x < (int)WindowWidth
@@ -1319,6 +1336,25 @@ RestoreCursor()
   exit(0);
 }
 
+/*
+ *	エラー処理
+ */
+
+int
+NekoErrorHandler(dpy, err)
+     Display		*dpy;
+     XErrorEvent	*err;
+{
+  if (err->error_code==BadWindow && (ToWindow || ToFocus)) {
+  }
+  else {
+    char msg[80];
+    XGetErrorText(dpy, err->error_code, msg, 80);
+    fprintf(stderr, "%s: Error and exit.\n%s\n", ProgramName, msg);
+    exit(1);
+  }
+}
+
 
 /*
  *	Usage
@@ -1333,12 +1369,12 @@ char	*message[] = {
 "-speed <dots>",
 "-time <microseconds>",
 "-idle <dots>",
-"-name <name>		: sets window name of cat.",
-"-towindow	       	: Cat chases selected window.",
-"-toname <name>		: Cat chases specified window.",
-"-tofocus      		: Cat runs on top of focus window",
+"-name <name>		: set window name of neko.",
+"-towindow	       	: Neko chases selected window.",
+"-toname <name>		: Neko chases specified window.",
+"-tofocus      		: Neko runs on top of focus window",
 "-rv			: Reverse video. (effects monochrome display only)",
-"-position <geometry>   : as position of geometry, relative to mouse pointer.",
+"-position <geometry>   : adjust position relative to mouse pointer.",
 "-debug                 : puts you in synchronous mode.",
 "-patchlevel            : print out your current patchlevel.",
 NULL };
@@ -1514,6 +1550,8 @@ main(argc, argv)
   argv++;
 
   GetArguments(argc, argv, theDisplayName);
+
+  XSetErrorHandler(NekoErrorHandler);
 
   InitScreen(theDisplayName);
 

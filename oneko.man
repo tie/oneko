@@ -77,7 +77,8 @@ as the target window.
 Makes cat run on top of focus window.
 .TP
 .BI \-position " geometry"
-Specify X and Y offsets for cat from mouse in pixels.
+Specify X and Y offsets in pixels
+to adjust position of cat relative to mouse pointer.
 .TP
 .B -rv
 Reverse background color and foreground color.
@@ -123,13 +124,16 @@ option is enabled by default.
 .PP
 BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
 .PP
-Sakura Kinomoto and Tomoyo Daidouji
-are characters in a comic strip "CARDCAPTOR SAKURA" (CLAMP, Kodansha),
-with the sanction indicated in
-CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
+Sakura Kinomoto and Tomoyo Daidouji who are characters in a comic
+strip "CARDCAPTOR SAKURA" (CLAMP, Kodansha), are with the sanction
+indicated in CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
 .SH AUTHOR
-Original xneko is written by Masayuki Koba and modified by Tatsuya Kato, 
-John Lerchey, Eric Anderson, Toshihiro Kanda and Kiichiroh Mukose.
+Original
+.I xneko
+is written by Masayuki Koba and modified to 
+.I oneko
+by Tatsuya Kato, and modified further by John Lerchey, Eric Anderson,
+Toshihiro Kanda and Kiichiroh Mukose.
 .SH MAINTAINER
 Send questions or problems to 
 Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>.
