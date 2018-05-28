@@ -1,0 +1,149 @@
+.TH ONEKO 6
+.SH 名称 oneko
+かわいい猫がマウスカーソルを追いかけるプログラム
+.SH 書式
+.B oneko
+[\fB-help\fP] [\fB-tora\fP]
+[\fB-dog\fP] [\fB-bsd_daemon\fP] [\fB-bsd\fP]
+[\fB-sakura\fP] [\fB-tomoyo\fP]
+[\fB-time\fP \fIn\fP] [\fB-speed\fP \fIn\fP] [\fB-idle\fP \fIn\fP]
+[\fB-name\fP \fIname\fP] [\fB-towindow\fP] [\fB-toname\fP \fIname\fP]
+[\fB-tofocus\fP]
+[\fB-position\fP \fIgeometry\fP]
+[\fB-rv\fP] [\fB-noshape\fP] [\fB-fg\fP] [\fB-bg\fP]
+.SH 解説
+.I oneko
+を実行するとマウスカーソルはねずみとなり、そして小さなかわいい猫がその
+マウスカーソルを追いかけはじめます。
+ねずみに追いつくと猫は眠りはじめます。
+.SS オプション
+.TP
+.B -help
+使い方の簡単な説明を出力します。
+.TP
+.B -tora
+猫をトラ猫にします。
+.TP
+.B -dog
+猫に代わり犬が走ります。
+.TP
+.B -bsd_daemon
+猫に代わり 4.3BSD デーモンが走ります。
+.TP
+.B -bsd
+.B -bsd_daemon
+に同じ。
+.TP
+.B -sakura
+猫に代わり木之本桜が走ります。
+.TP
+.B -tomoyo
+猫に代わり大道寺知世が走ります。
+.TP
+.BI \-time " interval"
+猫アニメーションの間隔を指定します。
+デフォルト値は 125000 で単位はマイクロ秒です。
+この値をより小さく指定すると猫はより速く走ります。
+.TP
+.BI \-speed " distance"
+猫が一つの動作で移動する距離をドットで指定します。
+デフォルト値は 16 です。
+.TP
+.BI \-idle " speed"
+逃げるねずみが猫の目を覚まさせるに至るスピードを指定します。
+.TP
+.BI \-name " name"
+猫のウィンドウ名を指定します。
+.TP
+.B -towindow
+.I oneko
+がこのオプションとともに起動された時は、あなたはカーソルでウィンドウを
+選択しなければなりません。
+すると猫があらわれて、ねずみの代わりにそのウィンドウを追いかけはじめま
+す。
+すでに起動している他の
+.I oneko
+を目標にすることもできます。
+ルートウィンドウが選択された場合は、通常のようにマウスを追いかけます。
+目標ウィンドウが閉じられてはいないものの見えない時には、通常のようにマ
+ウスを追いかけます。
+目標ウィンドウが閉じられるとプログラムは終了します。
+.TP
+.BI \-toname " name"
+猫は指定された名前のウィンドウをねずみの代わりに追いかけます。
+すでに起動している他の
+.I oneko
+を目標にすることもできます。
+目標ウィンドウが閉じられてはいないものの見えない時には、通常のようにマ
+ウスを追いかけます。
+目標ウィンドウが閉じられるとプログラムは終了します。
+.TP
+.B -tofocus
+猫はフォーカスウィンドウに向かって走り、そしてその上部を走ります。
+フォーカスウィンドウが見えない時には、通常のようにマウスを追いかけます。
+.TP
+.BI \-position " geometry"
+X と Y のオフセットを指定して猫のねずみへの相対位置を調整します。
+.TP
+.B -rv
+背景色と前景色を反転します。
+.TP
+.B -noshape
+SHAPE extension を使いません。
+.TP
+.BI \-fg " color"
+前景色。
+.TP
+.BI \-bg " color"
+背景色。
+.SS リソース
+アプリケーション名は neko もしくは tora で、クラス名は Oneko です。
+.TP
+.B tora
+トラ猫を走らせたい場合には True とします。
+.TP
+.B time
+アニメーションの間隔をマイクロ秒で設定します。
+.TP
+.B speed
+移動距離をピクセルで指定します。
+.TP
+.B idle
+逃げるねずみが猫の目を覚まさせるに至るスピードを指定します。
+.TP
+.B noshape
+SHAPE extension を使いたくない場合 True とします。
+.TP
+.B reverse
+前景色と背景色を交換したい場合 True とします。
+.TP
+.B foreground
+前景色。
+.TP
+.B background
+背景色。
+.SH 注釈
+このプログラムが XGetDefault を利用している以上、 neko.resouce の形式
+を使うことに留意してください。
+ハードリンクあるいはソフトリンクによって、このプログラムを tora として
+起動した場合には、デフォルトで \fB-tora\fP オプションが有効となります。
+.PP
+BSD デーモンは  Marshall Kirk McKusick 氏の著作物です。すべての権利は
+保持されています。
+BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
+.PP
+木之本桜および大道寺知世は漫画『カードキャプターさくら』（CLAMP, 講談
+社）のキャラクターであり、CLAMP 学園電子分校
+（http://www.clamp.f-2.co.jp/）に示されている容認のもとに利用されてい
+ます。
+.SH 作者
+オリジナルの
+.I xneko
+は Masayuki Koba によって書かれ、
+そして Tatsuya Kato によって改変され
+.I oneko
+となりました。
+その後 John Lerchey と Eric Anderson 、 Toshihiro Kanda 、および 
+Kiichiroh Mukose によってさらに改変されました。
+.SH 保守者
+問題や不明な点がございましたら mukose@hbar.mp.es.osaka-u.ac.jp まで。

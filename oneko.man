@@ -61,24 +61,32 @@ Specify the window name of cat.
 When
 .I oneko
 starts with this option, you must select a window by cursor.
-Then cat appears and chases the window instead of mouse.
+Then cat appears and starts chasing the window instead of mouse.
 You can select another running
 .I oneko
 as the target window.
 If root window is selected, cat chases mouse as usually.
+When the target window is not in sight and not closed, cat chases
+mouse as usually.
+If the target window is closed, this program exit.
 .TP
 .BI \-toname " name"
-Specify the window name of target to make cat chase it instead of mouse.
+Specify the window name of target to make cat chase it instead of
+mouse.
 You can specify another running
 .I oneko
 as the target window.
+When the target window is not in sight and not closed, cat chases
+mouse as usually.
+If the target window is closed, this program exit.
 .TP
 .B -tofocus
-Makes cat run on top of focus window.
+Makes cat run to and on top of focus window.
+When focus window is not in sight, cat chases mouse as usually.
 .TP
 .BI \-position " geometry"
-Specify X and Y offsets in pixels
-to adjust position of cat relative to mouse pointer.
+Specify X and Y offsets in pixels to adjust position of cat relative
+to mouse pointer.
 .TP
 .B -rv
 Reverse background color and foreground color.
@@ -124,16 +132,15 @@ option is enabled by default.
 .PP
 BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
 .PP
-Sakura Kinomoto and Tomoyo Daidouji who are characters in a comic
-strip "CARDCAPTOR SAKURA" (CLAMP, Kodansha), are with the sanction
-indicated in CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
+Sakura Kinomoto and Tomoyo Daidouji are characters in a comic strip
+"CARDCAPTOR SAKURA" (CLAMP, Kodansha), with the sanction indicated in
+CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
 .SH AUTHOR
 Original
 .I xneko
 is written by Masayuki Koba and modified to 
 .I oneko
-by Tatsuya Kato, and modified further by John Lerchey, Eric Anderson,
-Toshihiro Kanda and Kiichiroh Mukose.
+by Tatsuya Kato, and modified furthermore by John Lerchey, Eric
+Anderson, Toshihiro Kanda and Kiichiroh Mukose.
 .SH MAINTAINER
-Send questions or problems to 
-Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>.
+Send questions or problems to mukose@hbar.mp.es.osaka-u.ac.jp

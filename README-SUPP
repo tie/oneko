@@ -7,7 +7,7 @@
 							Masayuki Koba
 				Modified to program "oneko" by
 							Tatsuya Kato
-				Modified further by
+				Modified furthermore by
 							John Lerchey
 							Eric Anderson
 							Toshihiro Kanda
@@ -35,7 +35,7 @@ Kato $@;a$K$h$k(J oneko $@$b!"B?$/$N?M$?$A$N<j$K$h$C$F$5$i$K@.D9$7$F$$$^$9!#
    $@$H$9$k$H%S%C%H%^%C%W$,JQ$o$j$^$9!#(J
 
    BSD $@%G!<%b%s$O(J Marshall Kirk McKusick $@;a$NCx:nJ*$G$9!#$3$N%W%m%0%i(J
-   $@%`$O(J McKusick $@;a$N>5Bz$rF@$F$=$l$r;HMQ$7$F$$$^$9!#(J
+   $@%`$O(J McKusick $@;a$N>5Bz$rF@$F$3$l$r;HMQ$7$F$$$^$9!#(J
 
    $@!X%+!<%I%-%c%W%?!<$5$/$i!Y$*$h$S$=$N%-%c%i%/%?!<$O(J CLAMP $@$NCx:nJ*$G(J
    $@$9!#$?$@$7$=$N%-%c%i%/%?!<$OF1?M;oEy$K$*$1$kMxMQ$,MFG'$5$l$F$$$^$9!#(J 
@@ -66,7 +66,7 @@ Kato $@;a$K$h$k(J oneko $@$b!"B?$/$N?M$?$A$N<j$K$h$C$F$5$i$K@.D9$7$F$$$^$9!#
 
 -dog		$@G-$KBe$o$j8$$,Av$j$^$9!#(J
 
--bsd_daemon	$@G-$KBe$o$j(J BSD $@%G!<%b%s$,Av$j$^$9!#(J
+-bsd_daemon	$@G-$KBe$o$j(J 4.3BSD $@%G!<%b%s$,Av$j$^$9!#(J
 
 -bsd		-bsd_daemon $@$KF1$8!#(J
 
@@ -82,7 +82,8 @@ Kato $@;a$K$h$k(J oneko $@$b!"B?$/$N?M$?$A$N<j$K$h$C$F$5$i$K@.D9$7$F$$$^$9!#
 -toname <name>	$@;XDj$5$l$?L>A0$N%&%#%s%I%&$r%^%&%9$NBe$o$j$KDI$$$+$1$^(J
 		$@$9!#(J
 
--tofocus	$@G-$O%U%)!<%+%9%&%#%s%I%&$N>eIt$rAv$j$^$9!#(J
+-tofocus	$@G-$O%U%)!<%+%9%&%#%s%I%&$K8~$+$C$FAv$j!"$=$7$F$=$N>eIt(J
+		$@$rAv$j$^$9!#(J
 
 -position <geometry>
 		$@G-$N%^%&%9$H$NAjBP0LCV$rD4@a$7$^$9!#%G%U%)%k%HCM$+$i$N(J
@@ -90,7 +91,7 @@ Kato $@;a$K$h$k(J oneko $@$b!"B?$/$N?M$?$A$N<j$K$h$C$F$5$i$K@.D9$7$F$$$^$9!#
 
 README $@$K5s$2$i$l$F$$$k=>Mh$N%*%W%7%g%s$bA4$FM-8z$G$9!#(J
 
-$@;29M$^$G$K%-%c%i%/%?!<$4$H$N%G%U%)%k%HCM$O(J
+$@3F%S%C%H%^%C%W$4$H$K@_Dj$5$l$F$$$k%G%U%)%k%HCM$O(J
 
 		time	speed	idle	position
 default neko	125000	13	6	+0+0
@@ -100,10 +101,7 @@ bsd_daemon	300000	16	6	+22+20
 sakura		125000	13	6	+0+0
 tomoyo		125000	10	6	+32+32
 
--fg $@$H(J -bg $@$K$h$kG[?'$N;XDj$O!"$H$/$K(J -tofocus $@;~$K$O!"%?%$%H%k%P!<$K(J
-$@B7$($F$*$/$H$$$$46$8$G$9!#(J
-
-$@$J$*!"G-$K(J Meta(Alt)+q $@$rF~NO$9$k$3$H$K$h$C$F=*N;$5$;$k$3$H$,$G$-$^$9!#(J
-
+$@$J$*!"G-$K%-!<F~NO$rEO$9$3$H$,2DG=$J>l9g$K$O!"(JMeta (Alt) + q $@$K$h$C$F(J
+$@=*N;$5$;$k$3$H$b$G$-$^$9!#(J
 
 $@LdBj$dITL@$JE@$,$4$6$$$^$7$?$i(J mukose@hbar.mp.es.osaka-u.ac.jp $@$^$G!#(J

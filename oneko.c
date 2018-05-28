@@ -707,6 +707,32 @@ InitScreen(DisplayName)
 
 
 /*
+ *	SIGINT シグナル処理
+ */
+
+void
+RestoreCursor()
+{
+  XSetWindowAttributes	theWindowAttributes;
+  BitmapGCData *BitmapGCDataTablePtr;
+
+  theWindowAttributes.cursor = None;
+  XChangeWindowAttributes(theDisplay, theRoot, CWCursor,
+			  &theWindowAttributes);
+  for (BitmapGCDataTablePtr = BitmapGCDataTable;
+       BitmapGCDataTablePtr->GCCreatePtr != NULL;
+       BitmapGCDataTablePtr++) {
+    XFreePixmap(theDisplay,*(BitmapGCDataTablePtr->BitmapCreatePtr));
+    XFreePixmap(theDisplay,*(BitmapGCDataTablePtr->BitmapMasksPtr));
+    XFreeGC(theDisplay,*(BitmapGCDataTablePtr->GCCreatePtr));
+       }
+  XFreeCursor(theDisplay,theCursor);
+  XCloseDisplay(theDisplay);
+  exit(0);
+}
+
+
+/*
  *	インターバル
  *
  *	　この関数を呼ぶと、ある一定の時間返ってこなくなる。猫
@@ -1002,8 +1028,8 @@ CalcDxDy()
 	XGetWindowAttributes(theDisplay, theTarget, &theTargetAttributes);
 
       if (ToWindow && status == 0) {
-	fprintf(stderr, "%s: Target Lost.\n",ProgramName);
-	exit(1);
+	fprintf(stderr, "%s: '%s', Target Lost.\n",ProgramName, WindowName);
+	RestoreCursor();
       }
 
       if (theTargetAttributes.x+theTargetAttributes.width > 0 
@@ -1309,31 +1335,6 @@ NullFunction()
 #if defined(SYSV) || defined(SVR4)
   signal(SIGALRM, NullFunction);
 #endif /* SYSV || SVR4 */
-}
-
-/*
- *	SIGINT シグナル処理
- */
-
-void
-RestoreCursor()
-{
-  XSetWindowAttributes	theWindowAttributes;
-  BitmapGCData *BitmapGCDataTablePtr;
-
-  theWindowAttributes.cursor = None;
-  XChangeWindowAttributes(theDisplay, theRoot, CWCursor,
-			  &theWindowAttributes);
-  for (BitmapGCDataTablePtr = BitmapGCDataTable;
-       BitmapGCDataTablePtr->GCCreatePtr != NULL;
-       BitmapGCDataTablePtr++) {
-    XFreePixmap(theDisplay,*(BitmapGCDataTablePtr->BitmapCreatePtr));
-    XFreePixmap(theDisplay,*(BitmapGCDataTablePtr->BitmapMasksPtr));
-    XFreeGC(theDisplay,*(BitmapGCDataTablePtr->GCCreatePtr));
-       }
-  XFreeCursor(theDisplay,theCursor);
-  XCloseDisplay(theDisplay);
-  exit(0);
 }
 
 /*
