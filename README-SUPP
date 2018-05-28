@@ -1,0 +1,95 @@
+		oneko - Neko runs over the windows.
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+				Original program written by
+							Masayuki Koba
+				Modified by
+							Tatsuya Kato
+							John Lerchey
+							Eric Anderson
+							Toshihiro Kanda
+							Kiichiroh Mukose
+
+				This document written by
+					Kiichiroh Mukose
+					(mukose@hbar.mp.es.osaka-u.ac.jp)
+
+
+Kato 氏による oneko も、多くの人たちの手によってさらに成長しています。
+README および README-NEW をお読みください。
+
+＜バージョンアップによる機能拡張＞
+
+◎ 猫を犬や BSD デーモンにする機能が追加されました。
+   また、漫画『カートキャプターさくら』(CLAMP, 講談社)のキャラクター、
+   木之本桜と大道寺知世にもなります。
+   実行時にそれぞれ
+
+   % oneko -dog
+   % oneko -bsd_daemon もしくは -bsd
+   % oneko -sakura
+   % oneko -tomoyo
+
+   とするとビットマップが変わります。
+
+   BSD デーモンは Marshall Kirk McKusick 氏の著作物です。このプログラム
+   は McKusick 氏の承諾を得てそれを使用しています。
+
+   『カートキャプターさくら』およびそのキャラクターは CLAMP の著作物で
+   す。ただしそのキャラクターは同人誌等における二次使用が容認されていま
+   す。CLAMP学園電子分校(http://www.clamp.f-2.co.jp/)をご参照ください。
+
+◎ コンパイラに gcc を使うと動かない問題は、現在では見られなくなったよ
+   うです。Imakefile の CC=cc はコメントアウトされました。
+
+◎ 猫のマウスへの相対位置を設定できるようになりました。-position オプシ
+   ョンをお使いください。
+
+◎ ウィンドウ名を指定できるようになりました。-name オプションをお使いく
+   ださい。
+
+◎ マウス以外にウィンドウを追いかけることができるようになりました。すで
+   に走っている他の oneko を目標にすることもできます。-towindow オプシ
+   ョンもしくは -toname オプションをお使いください。
+
+   % oneko -name tama
+   % oneko -dog -toname tama
+
+   とすると、鼠を猫が追いかけ、その猫を犬が追いかけます。
+
+◎ フォーカスウィンドウの上部を走らせることができるようになりました。
+   -tofocus オプションをお使いください。
+
+＜新しい機能の使用方法＞
+
+-dog		猫に代わり犬が走ります。
+
+-bsd_daemon	猫に代わりBSDデーモンが走ります。
+
+-bsd		-bsd_daemonと同じ。
+
+-sakura		猫に代わり木之本桜が走ります。
+
+-tomoyo		猫に代わり大道寺知世が走ります。
+
+-name <name>	猫のウィンドウ名を指定します。
+
+-towindow	起動後にマウスで選択されたウィンドウをマウスの代わりに
+		追いかけます。
+
+-toname <name>	指定された名前のウィンドウをマウスの代わりに追いかけま
+		す。
+
+-tofocus	猫はフォーカスウィンドウの上部を走ります。
+
+-position <geometry>
+		猫のマウスからの相対位置を設定します。
+
+＜ばぐ、もしくは奇妙な仕様＞
+
+-towindow や -toname が目標をロストするとエラー終了する。しかし、11匹
+の猫と101匹の犬と900人の桜さんを数珠つなぎしても一発で終了できる、とい
+う利点もあると考えて、放置しています。
+
+問題や不明な点がございましたら mukose@hbar.mp.es.osaka-u.ac.jp まで。
+

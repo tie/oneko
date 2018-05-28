@@ -646,6 +646,7 @@ InitScreen(DisplayName)
   if (ToWindow && theTarget == None) {
     if (TargetName != NULL) {
       int i;
+
       for (i=0; i<5; i++) {
 	theTarget = Window_With_Name(theDisplay, theRoot, TargetName);
 	if (theTarget != None) break;
@@ -660,6 +661,18 @@ InitScreen(DisplayName)
       if (theTarget == theRoot) {
 	theTarget = None;
 	ToWindow = False;
+      }
+    }
+    if (theTarget != None) {
+      Window		QueryRoot, QueryParent, *QueryChildren;
+      unsigned int	nchild;
+
+      for (;;) {
+	XQueryTree(theDisplay, theTarget,
+		   &QueryRoot, &QueryParent, &QueryChildren, &nchild);
+	XFree(QueryChildren);
+	if (QueryParent == QueryRoot) break;
+	theTarget = QueryParent;
       }
     }
   }
@@ -932,93 +945,86 @@ IsNekoMoveStart()
 void
 CalcDxDy()
 {
-    Window		QueryRoot, QueryParent;
+    Window		QueryRoot, QueryChild;
+    int			AbsoluteX, AbsoluteY;
+    int			RelativeX, RelativeY;
+    unsigned int	ModKeyMask;
     double		LargeX, LargeY;
     double		DoubleLength, Length;
+
+    XQueryPointer(theDisplay, theWindow,
+		   &QueryRoot, &QueryChild,
+		   &AbsoluteX, &AbsoluteY,
+		   &RelativeX, &RelativeY,
+		   &ModKeyMask);
 
     PrevMouseX = MouseX;
     PrevMouseY = MouseY;
     PrevTarget = theTarget;
 
-    if (!ToWindow) {
-      Window		QueryChild;
-      int	       	AbsoluteX, AbsoluteY;
-      int		RelativeX, RelativeY;
-      unsigned int	ModKeyMask;
-
-      XQueryPointer(theDisplay, theWindow,
-		    &QueryRoot, &QueryChild,
-		    &AbsoluteX, &AbsoluteY,
-		    &RelativeX, &RelativeY,
-		    &ModKeyMask);
-
-      MouseX = AbsoluteX+XOffset;
-      MouseY = AbsoluteY+YOffset;
-    }
+    MouseX = AbsoluteX+XOffset;
+    MouseY = AbsoluteY+YOffset;
 
     if (ToFocus) {
       int		revert;
 
       XGetInputFocus(theDisplay, &theTarget, &revert);
-    }
 
-    if ((ToWindow || ToFocus)
-	&& theTarget != theRoot
-	&& theTarget != PointerRoot && theTarget != None) {
-      Window		*QueryChildren;
-      unsigned int	nchild;
+      if (theTarget != theRoot
+	  && theTarget != PointerRoot && theTarget != None) {
+	Window		QueryParent, *QueryChildren;
+	unsigned int	nchild;
 
-      for (;;) {
-	XQueryTree(theDisplay, theTarget,
-		   &QueryRoot, &QueryParent, &QueryChildren, &nchild);
-	XFree(QueryChildren);
-	if (QueryParent == QueryRoot) break;
-	theTarget = QueryParent;
-      }
-    }
-    else {
-      theTarget = None;
-    }
-
-    if (ToWindow || (ToFocus && theTarget != None)) {
-      int		TargetX, TargetY;
-      unsigned int	TargetW, TargetH;
-      unsigned int	TargetBorderW, TargetD;
-
-      XGetGeometry(theDisplay, theTarget, &QueryRoot,
-		   &TargetX, &TargetY,
-		   &TargetW, &TargetH,
-		   &TargetBorderW, &TargetD);
-
-      if ( TargetX+(int)TargetW <= 0 || TargetX >= (int)WindowWidth
-	  || TargetY+(int)TargetH <= 0 || TargetY >= (int)WindowHeight )
-	theTarget = None;
-
-      if (ToFocus  && theTarget != None) {
-	if (MouseX < TargetX+BITMAP_WIDTH/2)
-	  LargeX = (double)(TargetX + XOffset - NekoX);
-	else if (MouseX > TargetX+(int)TargetW-BITMAP_WIDTH/2) {
-	  LargeX = (double)(TargetX + (int)TargetW + XOffset 
-			    - NekoX - BITMAP_WIDTH);
+	for (;;) {
+	  XQueryTree(theDisplay, theTarget,
+		     &QueryRoot, &QueryParent, &QueryChildren, &nchild);
+	  XFree(QueryChildren);
+	  if (QueryParent == QueryRoot) break;
+	  theTarget = QueryParent;
 	}
-
-	else 
-	  LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
-
-	LargeY = (double)(TargetY + YOffset - NekoY - BITMAP_HEIGHT);
       }
-      else if (ToWindow) {
-	MouseX = TargetX + XOffset + (int)TargetW / 2;
-	MouseY = TargetY + YOffset;
+      else {
+	theTarget = None;
+      }
+    }
+
+    if ((ToWindow || ToFocus) && theTarget != None) {
+      XWindowAttributes		theTargetAttributes;
+
+      XGetWindowAttributes(theDisplay, theTarget, &theTargetAttributes);
+
+      if (theTargetAttributes.x+theTargetAttributes.width > 0 
+	  && theTargetAttributes.x < (int)WindowWidth
+	  && theTargetAttributes.y+theTargetAttributes.height > 0 
+	  && theTargetAttributes.y < (int)WindowHeight
+	  && theTargetAttributes.map_state == IsViewable) {
+	if (ToFocus) {
+	  if (MouseX < theTargetAttributes.x+BITMAP_WIDTH/2)
+	    LargeX = (double)(theTargetAttributes.x + XOffset - NekoX);
+	  else if (MouseX > theTargetAttributes.x+theTargetAttributes.width
+		   -BITMAP_WIDTH/2)
+	    LargeX = (double)(theTargetAttributes.x + theTargetAttributes.width
+			      + XOffset - NekoX - BITMAP_WIDTH);
+	  else 
+	    LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
+
+	  LargeY = (double)(theTargetAttributes.y
+			    + YOffset - NekoY - BITMAP_HEIGHT);
+	}
+	else {
+	  MouseX = theTargetAttributes.x + XOffset 
+	    + theTargetAttributes.width / 2;
+	  MouseY = theTargetAttributes.y + YOffset;
+	  LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
+	  LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);	
+	}
+      }
+      else {
 	LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
-	LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);	
+	LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);
       }
     }
     else {
-      theTarget = None;
-    }
-
-    if (theTarget == None) {
       LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
       LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);
     }
