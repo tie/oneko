@@ -1,0 +1,22 @@
+patchlevel "1.2.sakura.3"
+Added bitmaps of Sakura Kinomoto, who is a character in a comic strip,
+"CARDCAPTOR SAKURA" (CLAMP, Kodansha).
+
+Sakura bitmaps by Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>,
+with the sanction indicated in
+CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
+
+(original README-NEW follows)
+-----------------------------------------------------------------------
+patchlevel "1.2"
+Added 4.3BSD daemon bitmaps by candy@fct.kgc.co.jp (Toshihiro Kanda)
+Special thanks to Marshall Kirk McKusick for allowing to use daemon
+bitmaps and giving some advices.
+
+BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
+
+(original README-NEW follows)
+-----------------------------------------------------------------------
+Dog bitmaps contributed by John Lerchey(jl4l+@andrew.cmu.edu)
+Modifications to support dog bitmaps and to support auto-raising by 
+Eric Anderson(eanders+@cmu.edu)

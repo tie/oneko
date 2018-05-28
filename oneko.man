@@ -1,0 +1,117 @@
+.TH ONEKO 6
+.ad b
+.SH "/USR/CONTRIBUTED CAVEAT"
+The software and documentation in /usr/contributed are supported by
+users on campus rather than by the central support organizations.
+That is, they are *not* supported by Academic Computing and Media or
+Computing and Communications.  Questions or comments about the
+contents of /usr/contributed should be sent to the support person for
+the particular application, library, or information file.  The support
+person is cited in the Support Person field at the end of the
+documentation for the particular topic.
+.sp 0
+.SH NAME oneko
+The program oneko creates a cute cat chasing around your mouse cursor.
+.SH SYNOPSIS
+.B oneko
+[\fB-help\fP] [\fB-tora\fP]
+[\fB-dog\fP] [\fB-bsd_daemon\fP] [\fB-bsd\fP] [\fB-sakura\fP]
+[\fB-time\fP \fIn\fP] [\fB-speed\fP \fIn\fP]
+[\fB-idle\fP \fIn\fP] [\fB-rv\fP] [\fB-noshape\fP] [\fB-fg\fP] [\fB-bg\fP]
+.SH DESCRIPTION
+.I oneko
+changes your mouse cursor into mouse and creates a little cute cat and the
+cat start chasing around your mouse cursor.  If the cat catchup the ``mouse'',
+start sleeping.
+.SS Options
+.TP
+.B -help
+Prints help message on usage.
+.TP
+.B -tora
+Make cat into "tora-neko".  "Tora-neko" means cat wite tiger-like stripe.
+I don't know how to say it in English.
+.TP
+.B -dog
+Runs a dog instead of a cat.
+.TP
+.B -bsd_daemon
+Runs a 4.3BSD daemon instead of a cat.
+.TP
+.B -bsd
+Same as
+.B -bsd_daemon.
+.TP
+.B -sakura
+Runs Sakura Kinomoto instead of a cat.
+.TP
+.BI \-time " interval"
+Sets interval timer which determine intervals for cat animation.
+Default value is 125000 and unit is micro-second.  Smaller value makes cat
+run faster.
+.TP
+.BI \-speed " distance"
+Specify the distance where cat jumps at one move in dot resolution.
+Default is 16.
+.TP
+.BI \-idle " speed"
+Specify the threshold of the speed which ``mouse'' running away
+to wake cat up.
+.TP
+.B -rv
+Reverse background color and foreground color.
+.TP
+.B -noshape
+Don't use SHAPE extension.
+.TP
+.BI \-fg " color"
+Foreground color.
+.TP
+.BI \-bg " color"
+Background color.
+.SS Resources
+Application name is "neko"(or "tora") and class name is "Oneko".
+.TP
+.B tora
+Set ``True'' if you want "tora-neko".
+.TP
+.B time
+Sets interval timer in micro-second.
+.TP
+.B speed
+Sets distance to jump in pixel.
+.TP
+.B idle
+Sets speed threshold to wake cat up when ``mouse'' running away.
+.TP
+.B noshape
+Set ``True'' if you don't want to use SHAPE extension.
+.TP
+.B reverse
+Set ``True'' if you want to switch foreground and background color.
+.TP
+.B foreground
+Foreground color.
+.TP
+.B background
+Background color.
+.SH Notes
+While this program uses XGetDefault, be sure to use "neko.resouce" form.
+If you run this program as "tora", by hard of soft link, the \fB-tora\fP
+option is enabled by default.
+.SH AUTHOR
+Original xneko is written by Masayuki Koba and modified by Tatsuya Kato
+(kato@ntts.co.jp).  Send bug fixes and enhancements to kato@ntts.co.jp
+.SH MAINTAINER
+Send questions or problems to ea08@andrew.cmu.edu
+.ad b
+.SH "/USR/CONTRIBUTED CAVEAT"
+The software and documentation in /usr/contributed are supported by
+users on campus rather than by the central support organizations.
+That is, they are *not* supported by Academic Computing and Media or
+Computing and Communications.  Questions or comments about the
+contents of /usr/contributed should be sent to the support person for
+the particular application, library, or information file.  The support
+person is cited in the Support Person field at the end of the
+documentation for the particular topic.
+.sp 0

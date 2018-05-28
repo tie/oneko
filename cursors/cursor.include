@@ -1,0 +1,8 @@
+#include "mouse_cursor.xbm"
+#include "mouse_cursor_mask.xbm"
+#include "bone_cursor.xbm"
+#include "bone_cursor_mask.xbm"
+#include "bsd_cursor.xbm"
+#include "bsd_cursor_mask.xbm"
+#include "card_cursor.xbm"
+#include "card_cursor_mask.xbm"

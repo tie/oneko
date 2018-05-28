@@ -1,0 +1,9 @@
+#!/bin/sh
+rm -f *.xbm
+cp -f ../../bitmaps/bsd/* .
+ls *.xbm | sed 's/\(.*\)\.xbm/mv -f & \1_mask.xbm/' | sh
+for i in *.xbm ; do
+	f=`basename $i .xbm`
+	sed 's/unsigned *//' $i | xbmtopbm | pbmmask | pbmtoxbm | sed "s/noname/$f/" > t
+	mv -f t $i
+done

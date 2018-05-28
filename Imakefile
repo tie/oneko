@@ -1,0 +1,11 @@
+/**/# Cannot compile in using Gcc
+             CC = cc
+
+  SYS_LIBRARIES = MathLibrary
+LOCAL_LIBRARIES = $(XLIB)
+        DEPLIBS = $(DEPXLIB)
+        DEFINES = -DSHAPE
+
+SimpleProgramTarget(oneko)
+
+/* InstallAppDefaults(Oneko) */
