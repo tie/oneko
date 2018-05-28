@@ -6,3 +6,5 @@
 #include "bsd_cursor_mask.xbm"
 #include "card_cursor.xbm"
 #include "card_cursor_mask.xbm"
+#include "petal_cursor.xbm"
+#include "petal_cursor_mask.xbm"

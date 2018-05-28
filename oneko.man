@@ -1,23 +1,14 @@
 .TH ONEKO 6
-.ad b
-.SH "/USR/CONTRIBUTED CAVEAT"
-The software and documentation in /usr/contributed are supported by
-users on campus rather than by the central support organizations.
-That is, they are *not* supported by Academic Computing and Media or
-Computing and Communications.  Questions or comments about the
-contents of /usr/contributed should be sent to the support person for
-the particular application, library, or information file.  The support
-person is cited in the Support Person field at the end of the
-documentation for the particular topic.
-.sp 0
 .SH NAME oneko
 The program oneko creates a cute cat chasing around your mouse cursor.
 .SH SYNOPSIS
 .B oneko
 [\fB-help\fP] [\fB-tora\fP]
-[\fB-dog\fP] [\fB-bsd_daemon\fP] [\fB-bsd\fP] [\fB-sakura\fP]
-[\fB-time\fP \fIn\fP] [\fB-speed\fP \fIn\fP]
-[\fB-idle\fP \fIn\fP] [\fB-towindow\fP] [\fB-tofocus\fP]
+[\fB-dog\fP] [\fB-bsd_daemon\fP] [\fB-bsd\fP]
+[\fB-sakura\fP] [\fB-tomoyo\fP]
+[\fB-time\fP \fIn\fP] [\fB-speed\fP \fIn\fP] [\fB-idle\fP \fIn\fP]
+[\fB-name\fP \fIname\fP] [\fB-towindow\fP] [\fB-toname\fP \fIname\fP]
+[\fB-tofocus\fP]
 [\fB-position\fP \fIgeometry\fP]
 [\fB-rv\fP] [\fB-noshape\fP] [\fB-fg\fP] [\fB-bg\fP]
 .SH DESCRIPTION
@@ -47,6 +38,9 @@ Same as
 .B -sakura
 Runs Sakura Kinomoto instead of a cat.
 .TP
+.B -tomoyo
+Runs Tomoyo Daidouji instead of a cat.
+.TP
 .BI \-time " interval"
 Sets interval timer which determine intervals for cat animation.
 Default value is 125000 and unit is micro-second.  Smaller value makes cat
@@ -60,6 +54,9 @@ Default is 16.
 Specify the threshold of the speed which ``mouse'' running away
 to wake cat up.
 .TP
+.BI \-name " name"
+Specify the window name of cat.
+.TP
 .B -towindow
 When
 .I oneko
@@ -70,8 +67,15 @@ You can select another running
 as the target window.
 If root window is selected, cat chases mouse as usually.
 .TP
+.BI \-toname " name"
+Specify the window name of target to make cat chase it instead of mouse.
+You can specify another running
+.I oneko
+as the target window.
+If program cannot find the specified window, it acts as -towindow.
+.TP
 .B -tofocus
-Makes cat chase focus window instead of mouse.
+Makes cat run on top of focus window.
 .TP
 .BI \-position " geometry"
 Specify X and Y offsets for cat from mouse in pixels.
@@ -117,19 +121,16 @@ Background color.
 While this program uses XGetDefault, be sure to use "neko.resouce" form.
 If you run this program as "tora", by hard of soft link, the \fB-tora\fP
 option is enabled by default.
+.PP
+BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
+.PP
+Sakura Kinomoto and Tomoyo Daidouji
+are characters in a comic strip "CARDCAPTOR SAKURA" (CLAMP, Kodansha),
+with the sanction indicated in
+CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
 .SH AUTHOR
-Original xneko is written by Masayuki Koba and modified by Tatsuya Kato
-(kato@ntts.co.jp).  Send bug fixes and enhancements to kato@ntts.co.jp
+Original xneko is written by Masayuki Koba and modified by Tatsuya Kato, 
+John Lerchey, Eric Anderson, Toshihiro Kanda and Kiichiroh Mukose.
 .SH MAINTAINER
-Send questions or problems to ea08@andrew.cmu.edu
-.ad b
-.SH "/USR/CONTRIBUTED CAVEAT"
-The software and documentation in /usr/contributed are supported by
-users on campus rather than by the central support organizations.
-That is, they are *not* supported by Academic Computing and Media or
-Computing and Communications.  Questions or comments about the
-contents of /usr/contributed should be sent to the support person for
-the particular application, library, or information file.  The support
-person is cited in the Support Person field at the end of the
-documentation for the particular topic.
-.sp 0
+Send questions or problems to 
+Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>.

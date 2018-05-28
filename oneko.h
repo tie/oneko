@@ -38,6 +38,7 @@
 #include "bitmaps/dog/dog.include"
 #include "bitmaps/bsd/bsd.include"
 #include "bitmaps/sakura/sakura.include"
+#include "bitmaps/tomoyo/tomoyo.include"
 
 /* These are the bitmasks that allow the use of the shape extension. */
 
@@ -45,6 +46,7 @@
 #include "bitmasks/dog/dog.mask.include"
 #include "bitmasks/bsd/bsd.mask.include"
 #include "bitmasks/sakura/sakura.mask.include"
+#include "bitmasks/tomoyo/tomoyo.mask.include"
 
 /*
  *	定数定義

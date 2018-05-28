@@ -1,5 +1,5 @@
 /**/# Cannot compile in using Gcc
-             CC = cc
+#             CC = cc
 
   SYS_LIBRARIES = MathLibrary
 LOCAL_LIBRARIES = $(XLIB)

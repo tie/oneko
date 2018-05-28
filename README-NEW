@@ -1,11 +1,14 @@
-patchlevel "1.2.sakura.4"
-Added bitmaps of Sakura Kinomoto who is a character in a comic strip
-"CARDCAPTOR SAKURA" (CLAMP, Kodansha), with the sanction indicated in
+patchlevel "1.2.sakura.5b"
+Added bitmaps of Sakura Kinomoto and Tomoyo Daidouji
+who are characters in a comic strip "CARDCAPTOR SAKURA" (CLAMP, Kodansha),
+with the sanction indicated in
 CLAMP SCHOOL WEB CAMPUS (http://www.clamp.f-2.co.jp/).
 
-Modified to support new options, -towindow and -tofocus.
+Modified to support -name, -towindow, -toname and -tofocus.
 
 By Kiichiroh Mukose <mukose@hbar.mp.es.osaka-u.ac.jp>.
+See
+http://www.daidouji.com/oneko/
 
 (original README-NEW follows)
 -----------------------------------------------------------------------
