@@ -55,7 +55,7 @@ AnimalDefaultsData AnimalDefaultsDataTable[] =
       bsd_cursor_width,bsd_cursor_height, bsd_cursor_x_hot,bsd_cursor_y_hot },
   { "sakura" , 13, 6, 32, 32, 125000L, 0, 0, card_cursor_bits,card_cursor_mask_bits,
       card_cursor_width,card_cursor_height, card_cursor_x_hot,card_cursor_y_hot },
-  { "tomoyo" , 13, 6, 32, 32, 250000L, 32, 32, petal_cursor_bits,petal_cursor_mask_bits,
+  { "tomoyo" , 10, 6, 32, 32, 125000L, 32, 32, petal_cursor_bits,petal_cursor_mask_bits,
       petal_cursor_width,petal_cursor_height, petal_cursor_x_hot,petal_cursor_y_hot },
 };
 
@@ -503,40 +503,9 @@ SetupColors()
 }
 
 /*
- * Window_With_Name: routine to locate a window with a given name on a display.
- *                   If no window with the given name is found, 0 is returned.
- *                   If more than one window has the given name, the first
- *                   one found will be returned.  Only top and its subwindows
- *                   are looked at.  Normally, top should be the RootWindow.
- */
-Window Window_With_Name(dpy, top, name)
-     Display *dpy;
-     Window top;
-     char *name;
-{
-	Window *children, dummy;
-	unsigned int nchildren;
-	int i;
-	Window w=0;
-	char *window_name;
-
-	if (XFetchName(dpy, top, &window_name) && !strcmp(window_name, name))
-	  return(top);
-
-	if (!XQueryTree(dpy, top, &dummy, &dummy, &children, &nchildren))
-	  return(0);
-
-	for (i=0; i<nchildren; i++) {
-		w = Window_With_Name(dpy, children[i], name);
-		if (w)
-		  break;
-	}
-	if (children) XFree ((char *)children);
-	return(w);
-}
-
-/*
  * Routine to let user select a window using the mouse
+ *
+ * This routine originate in dsimple.c
  */
 
 Window Select_Window(dpy)
@@ -583,6 +552,41 @@ Window Select_Window(dpy)
   XUngrabPointer(dpy, CurrentTime);      /* Done with pointer */
 
   return(target_win);
+}
+
+/*
+ * Window_With_Name: routine to locate a window with a given name on a display.
+ *                   If no window with the given name is found, 0 is returned.
+ *                   If more than one window has the given name, the first
+ *                   one found will be returned.  Only top and its subwindows
+ *                   are looked at.  Normally, top should be the RootWindow.
+ *
+ * This routine originate in dsimple.c
+ */
+Window Window_With_Name(dpy, top, name)
+     Display *dpy;
+     Window top;
+     char *name;
+{
+	Window *children, dummy;
+	unsigned int nchildren;
+	int i;
+	Window w=0;
+	char *window_name;
+
+	if (XFetchName(dpy, top, &window_name) && !strcmp(window_name, name))
+	  return(top);
+
+	if (!XQueryTree(dpy, top, &dummy, &dummy, &children, &nchildren))
+	  return(0);
+
+	for (i=0; i<nchildren; i++) {
+		w = Window_With_Name(dpy, children[i], name);
+		if (w)
+		  break;
+	}
+	if (children) XFree ((char *)children);
+	return(w);
 }
 
 /*
@@ -639,17 +643,24 @@ InitScreen(DisplayName)
   SetupColors();
   MakeMouseCursor();
 
-  if (ToWindow && TargetName != NULL && theTarget == None)
-    theTarget = Window_With_Name(theDisplay, theRoot, TargetName);
-
-  if (ToWindow && TargetName != NULL && theTarget == None)
-    theTarget = Window_With_Name(theDisplay, theRoot, TargetName);
-
   if (ToWindow && theTarget == None) {
-    theTarget = Select_Window(theDisplay);
-    if (theTarget == theRoot) {
-      theTarget = None;
-      ToWindow = False;
+    if (TargetName != NULL) {
+      int i;
+      for (i=0; i<5; i++) {
+	theTarget = Window_With_Name(theDisplay, theRoot, TargetName);
+	if (theTarget != None) break;
+      }
+      if (theTarget == None) {
+	fprintf(stderr, "%s: No window with name '%s' exists.\n",
+		ProgramName, TargetName);
+	exit(1);
+      }
+    } else {
+      theTarget = Select_Window(theDisplay);
+      if (theTarget == theRoot) {
+	theTarget = None;
+	ToWindow = False;
+      }
     }
   }
 
@@ -952,7 +963,7 @@ CalcDxDy()
     }
 
     if ((ToWindow || ToFocus)
-	&& theTarget != theRoot && theTarget != theWindow
+	&& theTarget != theRoot
 	&& theTarget != PointerRoot && theTarget != None) {
       Window		*QueryChildren;
       unsigned int	nchild;
@@ -986,16 +997,18 @@ CalcDxDy()
       if (ToFocus  && theTarget != None) {
 	if (MouseX < TargetX+BITMAP_WIDTH/2)
 	  LargeX = (double)(TargetX + XOffset - NekoX);
-	else if (MouseX > TargetX+TargetW-BITMAP_WIDTH/2)
-	  LargeX = (double)(TargetX + TargetW + XOffset 
+	else if (MouseX > TargetX+(int)TargetW-BITMAP_WIDTH/2) {
+	  LargeX = (double)(TargetX + (int)TargetW + XOffset 
 			    - NekoX - BITMAP_WIDTH);
-	else
+	}
+
+	else 
 	  LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
 
 	LargeY = (double)(TargetY + YOffset - NekoY - BITMAP_HEIGHT);
       }
       else if (ToWindow) {
-	MouseX = TargetX + XOffset + TargetW / 2;
+	MouseX = TargetX + XOffset + (int)TargetW / 2;
 	MouseY = TargetY + YOffset;
 	LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
 	LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);	

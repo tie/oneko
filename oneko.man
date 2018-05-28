@@ -72,7 +72,6 @@ Specify the window name of target to make cat chase it instead of mouse.
 You can specify another running
 .I oneko
 as the target window.
-If program cannot find the specified window, it acts as -towindow.
 .TP
 .B -tofocus
 Makes cat run on top of focus window.
