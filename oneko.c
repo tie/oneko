@@ -85,13 +85,13 @@ Bool	DontMapped = True;
 int	NekoTickCount;		/* 猫動作カウンタ */
 int	NekoStateCount;		/* 猫同一状態カウンタ */
 int	NekoState;		/* 猫の状態 */
-Window	PrevTarget = None;	/* 直前の目標ウィンドウのＩＤ */
 
 int	MouseX;			/* マウスＸ座標 */
 int	MouseY;			/* マウスＹ座標 */
 
 int	PrevMouseX = 0;		/* 直前のマウスＸ座標 */
 int	PrevMouseY = 0;		/* 直前のマウスＹ座標 */
+Window	PrevTarget = None;	/* 直前の目標ウィンドウのＩＤ */
 
 int	NekoX;			/* 猫Ｘ座標 */
 int	NekoY;			/* 猫Ｙ座標 */
@@ -414,12 +414,8 @@ GetResources()
   if (IdleSpace == 0) {
     IdleSpace = AnimalDefaultsDataTable[NekoMoyou].idle;
   }
-  if (XOffset == 0) {
-    XOffset = AnimalDefaultsDataTable[NekoMoyou].off_x;
-  }
-  if (YOffset == 0) {
-    YOffset = AnimalDefaultsDataTable[NekoMoyou].off_y;
-  }
+  XOffset = XOffset + AnimalDefaultsDataTable[NekoMoyou].off_x;
+  YOffset = YOffset + AnimalDefaultsDataTable[NekoMoyou].off_y;
   if (NoShape == NOTDEFINED) {
     NoShape = False;
   }
@@ -1012,8 +1008,8 @@ CalcDxDy()
 			    + YOffset - NekoY - BITMAP_HEIGHT);
 	}
 	else {
-	  MouseX = theTargetAttributes.x + XOffset 
-	    + theTargetAttributes.width / 2;
+	  MouseX = theTargetAttributes.x 
+	    + theTargetAttributes.width / 2 + XOffset;
 	  MouseY = theTargetAttributes.y + YOffset;
 	  LargeX = (double)(MouseX - NekoX - BITMAP_WIDTH / 2);
 	  LargeY = (double)(MouseY - NekoY - BITMAP_HEIGHT);	
