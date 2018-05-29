@@ -612,13 +612,11 @@ InitScreen(char *DisplayName)
     XSynchronize(theDisplay,True);
   }
 
-#ifdef SHAPE
   if (!NoShape && XShapeQueryExtension(theDisplay,
                                        &event_base, &error_base) == False) {
     fprintf(stderr, "Display not suported shape extension.\n");
     NoShape = True;
   }
-#endif /* SHAPE */
 
   theScreen = DefaultScreen(theDisplay);
   theDepth = DefaultDepth(theDisplay, theScreen);
@@ -791,13 +789,11 @@ DrawNeko(int x, int y, Animation DrawAnime)
       theChanges.x = x;
       theChanges.y = y;
       XConfigureWindow(theDisplay, theWindow, CWX | CWY, &theChanges);
-#ifdef SHAPE
       if (NoShape == False) {
         XShapeCombineMask(theDisplay, theWindow, ShapeBounding,
                           0, 0, DrawMask, ShapeSet);
 
       }
-#endif /* SHAPE */
       if (DontMapped) {
         XMapWindow(theDisplay, theWindow);
         DontMapped = 0;
