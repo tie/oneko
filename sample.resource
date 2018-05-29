@@ -1,3 +1,3 @@
 ! Neko
-tora.foreground:			sienna
-tora.background:			moccasin
+tora.foreground: sienna
+tora.background: moccasin

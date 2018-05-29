@@ -1,10 +1,10 @@
-		oneko - Neko runs over the windows.
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                oneko - Neko runs over the windows.
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-				Original program written by
-							Masayuki Koba
-				Modified by
-					Tatsuya Kato (kato@ntts.co.jp)
+                                Original program written by
+                                                        Masayuki Koba
+                                Modified by
+                                        Tatsuya Kato (kato@ntts.co.jp)
 
 
 以前、fj.sources に xneko という X Window 上で動く「猫」が投稿されてい
@@ -109,33 +109,33 @@ o' のこじつけに "Neko runs Over the windows" の 'o' をつけました。
 基本的にオプションはいりません。が、こんなおぷしょんもあります。
 help を除くオプションはリソースからも変更できます。
 
--help		オプションの help を表示します。
+-help           オプションの help を表示します。
 
--tora		猫がとら猫に変わります。
+-tora           猫がとら猫に変わります。
 
--time <n>	猫が使うインターバルタイマの値を変えます。デフォルトは 
-		micro second 単位で 125000 になっていますが、この値を
-		小さくするほど猫が速く動きます。
+-time <n>       猫が使うインターバルタイマの値を変えます。デフォルトは
+                micro second 単位で 125000 になっていますが、この値を
+                小さくするほど猫が速く動きます。
 
--speed <n>	猫が一度に移動する距離をドットの数で指定します。デフォ
-		ルトは 16 ですが、この値を大きくするほど猫が速く移動し
-		ます。
+-speed <n>      猫が一度に移動する距離をドットの数で指定します。デフォ
+                ルトは 16 ですが、この値を大きくするほど猫が速く移動し
+                ます。
 
--idle <n>	猫が寝ている時、どれだけの速度でねずみが動いたら起きる
-		のかを指定できます。デフォルトは 6 です。
+-idle <n>       猫が寝ている時、どれだけの速度でねずみが動いたら起きる
+                のかを指定できます。デフォルトは 6 です。
 
--rv		色を反転します。（カラーのディスプレイでは fg, bg で指
-		定できるので、あんまり意味がありません。）
+-rv             色を反転します。（カラーのディスプレイでは fg, bg で指
+                定できるので、あんまり意味がありません。）
 
--noshape	X の Shape Extension を使わずに実行します。速度はかな
-		り速くなりますが、表示がつまらなくなります。（実際にやっ
-		てみてください。）
+-noshape        X の Shape Extension を使わずに実行します。速度はかな
+                り速くなりますが、表示がつまらなくなります。（実際にやっ
+                てみてください。）
 
--fg <color>	フォアグラウンドの色を指定します。モノクロームのディス
-		プレイでは無視されてしまいます。
+-fg <color>     フォアグラウンドの色を指定します。モノクロームのディス
+                プレイでは無視されてしまいます。
 
--bg <color>	バックグラウンドの色を指定します。モノクロームのディス
-		プレイでは無視されてしまいます。
+-bg <color>     バックグラウンドの色を指定します。モノクロームのディス
+                プレイでは無視されてしまいます。
 
 また、インストールすると tora にも symbolic link を張ります。tora とい
 うコマンド名で起動した時にはデフォルトで -tora オプションをつけた時と
@@ -143,16 +143,16 @@ help を除くオプションはリソースからも変更できます。
 
 リソースで指定した場合はこうです。
 
-oneko.foreground:	black
-oneko.background:	red
-oneko.time:		100000
-oneko.reverse:		true
+oneko.foreground:       black
+oneko.background:       red
+oneko.time:             100000
+oneko.reverse:          true
 
-コマンドが oneko ではなく、tora という名前で起動された場合リソース名は 
+コマンドが oneko ではなく、tora という名前で起動された場合リソース名は
 tora.* になりますから
 
-tora.foreground:	sienna
-tora.background:	moccasin
+tora.foreground:        sienna
+tora.background:        moccasin
 
 としてとら猫の設定と普通の猫の設定を別にすることも可能です。とら猫の色
 はそのままでは白黒になってしまうので上の２行を resoerce にいれて下さい。
@@ -186,7 +186,7 @@ Save Under も試してみましたが、遅くてやめてしまいました。
 
 仕事している時、猫を動かしていると時々猫にキー入力を邪魔されることがあ
 ります。キー入力を無視して下のウインドウに渡すことが出来るのでしょうか？
-（そういっている割には今のバージョンの猫はキーイベントを Select input 
+（そういっている割には今のバージョンの猫はキーイベントを Select input
 しています。）
 
 ＃ 基本的にＰＤＳですが、バグ修正や機能拡張は（こっそりでもいいですか
