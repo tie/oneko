@@ -1,4 +1,4 @@
-#!/usr/contributed/bin/perl
+#!/bin/perl
 foreach $elem( @ARGV) {
     if ($elem =~ /\.xbm$/io) {
         rename ($elem, $elem . '.bak');
