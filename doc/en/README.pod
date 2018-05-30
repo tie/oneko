@@ -1,0 +1,180 @@
+=encoding utf8
+
+=begin man
+
+.if n .ad
+
+=end man
+
+=head1 Name
+
+oneko — a cute cat chasing around your mouse cursor
+
+=head1 Synopsis
+
+B<oneko> [B<-help>]
+[B<-tora>] [B<-dog>] [B<-bsd_daemon>] [B<-bsd>] [B<-sakura>] [B<-tomoyo>]
+[B<-time> I<n>] [B<-speed> I<n>] [B<-idle> I<n>]
+[B<-name> I<name>] [B<-towindow>] [B<-toname> I<name>] [B<-tofocus>]
+[B<-position> I<geometry>]
+[B<-rv>] [B<-noshape>] [B<-fg>] [B<-bg>]
+
+=head1 Description
+
+I<oneko> changes your mouse cursor into a mouse and creates a little cute cat
+which starts chasing your mouse cursor.  If the cat catches up the cursor,
+it starts sleeping.
+
+=head2 Options
+
+=over
+
+=item B<-help>
+
+Prints help message on usage.
+
+=item B<-tora>
+
+Make cat into "tora-neko".  "Tora-neko" means cat with tiger-like stripe.
+I don't know how to say it in English.
+
+=item B<-dog>
+
+Runs a dog instead of a cat.
+
+=item B<-bsd>, B<-bsd_daemon>
+
+Runs a 4.3BSD daemon instead of a cat.
+
+=item B<-sakura>
+
+Runs Sakura Kinomoto instead of a cat.
+
+=item B<-tomoyo>
+
+Runs Tomoyo Daidouji instead of a cat.
+
+=item B<-time> I<interval>
+
+Sets interval timer which determine intervals for cat animation.
+Default value is 125000 and unit is micro-second.  Smaller value makes cat
+run faster.
+
+=item B<-speed> I<distance>
+
+Specify the distance where the cat jumps at one move in dot resolution.
+The default is 16.
+
+=item B<-idle> I<speed>
+
+Specify the speed threshold to wake cat up when mouse is running away.
+
+=item B<-name> I<name>
+
+Specify the window name of the cat.
+
+=item B<-towindow>
+
+When I<oneko> starts with this option, you must select a window by the cursor.
+Then cat appears and starts chasing the window instead of a mouse.  You can
+select another running I<oneko> as the target window.  If root window is
+selected, cat chases mouse as usually.  When the target window is not in sight
+and not closed, cat chases mouse as usually.  If the target window is closed,
+this program exits.
+
+=item B<-toname> I<name>
+
+Specify the window name of the target to make cat chase it instead of a mouse.
+You can specify another running I<oneko> as the target window.  When the target
+window is not in sight and not closed, cat chases mouse as usually.  If the
+target window is closed, this program exits.
+
+=item B<-tofocus>
+
+Makes cat run to and on top of focus window.  When focus window is not in sight,
+cat chases mouse as usually.
+
+=item B<-position> I<geometry>
+
+Specify X and Y offsets in pixels to adjust the position of cat relative to a
+mouse pointer.
+
+=item B<-rv>
+
+Reverse background color and foreground color.
+
+=item B<-noshape>
+
+Don't use SHAPE extension.
+
+=item B<-fg> I<color>
+
+Foreground color.
+
+=item B<-bg> I<color>
+
+Background color.
+
+=back
+
+=head2 Resources
+
+The application name is "neko" (or "tora") and the class name is "Oneko".
+
+=over
+
+=item B<tora>
+
+Set C<True> if you want "tora-neko".
+
+=item B<time>
+
+Sets interval timer in micro-second.
+
+=item B<speed>
+
+Sets distance to jump in pixels.
+
+=item B<idle>
+
+Sets speed threshold to wake cat up when mouse is running away.
+
+=item B<noshape>
+
+Set C<True> if you don't want to use SHAPE extension.
+
+=item B<reverse>
+
+Set C<True> if you want to switch foreground and background color.
+
+=item B<foreground>
+
+Foreground color.
+
+=item B<background>
+
+Background color.
+
+=back
+
+=head1 Notes
+
+While this program uses C<XGetDefault>, be sure to use "neko.resource" form. If
+you run this program as "tora", by hard or soft link, the B<-tora> option is
+enabled by default.
+
+BSD Daemon Copyright 1988 by Marshall Kirk McKusick. All Rights Reserved.
+
+Sakura Kinomoto and Tomoyo Daidouji are characters in a comic strip
+"CARDCAPTOR SAKURA" (CLAMP, Kodansha), with the sanction indicated in
+L<CLAMP SCHOOL WEB CAMPUS|http://www.clamp.f-2.co.jp/>.
+
+=head1 Authors
+
+Original I<xneko> was written by Masayuki Koba and modified to I<oneko>
+by Tatsuya Kato, and modified furthermore by John Lerchey, Eric Anderson,
+Toshihiro Kanda and L<Kiichiroh Mukose|mailto:mukose@hbar.mp.es.osaka-u.ac.jp>.
+
+=head1 Maintainer
+
+L<Ivan Trubach|mailto:mr.trubach@icloud.com>

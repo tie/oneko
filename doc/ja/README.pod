@@ -1,0 +1,177 @@
+=encoding utf8
+
+=head1 名称
+
+oneko — かわいい猫がマウスカーソルを追いかけるプログラム
+
+B<oneko> [B<-help>]
+[B<-tora>] [B<-dog>] [B<-bsd_daemon>] [B<-bsd>] [B<-sakura>] [B<-tomoyo>]
+[B<-time> I<n>] [B<-speed> I<n>] [B<-idle> I<n>]
+[B<-name> I<name>] [B<-towindow>] [B<-toname> I<name>] [B<-tofocus>]
+[B<-position> I<geometry>]
+[B<-rv>] [B<-noshape>] [B<-fg>] [B<-bg>]
+
+=head1 解説
+
+I<oneko> を実行するとマウスカーソルはねずみとなり、そして小さなかわいい猫がその
+マウスカーソルを追いかけはじめます。
+ねずみに追いつくと猫は眠りはじめます。
+
+=head2 オプション
+
+=over
+
+=item B<-help>
+
+使い方の簡単な説明を出力します。
+
+=item B<-tora>
+
+猫をトラ猫にします。
+
+=item B<-dog>
+
+猫に代わり犬が走ります。
+
+=item B<-bsd>, B<-bsd_daemon>
+
+猫に代わり 4.3BSD デーモンが走ります。
+
+=item B<-sakura>
+
+猫に代わり木之本桜が走ります。
+
+=item B<-tomoyo>
+
+猫に代わり大道寺知世が走ります。
+
+=item B<-time> I<interval>
+
+猫アニメーションの間隔を指定します。
+デフォルト値は 125000 で単位はマイクロ秒です。
+この値をより小さく指定すると猫はより速く走ります。
+
+=item B<-speed> I<distance>
+
+猫が一つの動作で移動する距離をドットで指定します。
+デフォルト値は 16 です。
+
+=item B<-idle> I<speed>
+
+逃げるねずみが猫の目を覚まさせるに至るスピードを指定します。
+
+=item B<-name> I<name>
+
+猫のウィンドウ名を指定します。
+
+=item B<-towindow>
+
+がこのオプションとともに起動された時は、あなたはカーソルでウィンドウを
+選択しなければなりません。
+すると猫があらわれて、ねずみの代わりにそのウィンドウを追いかけはじめます。
+すでに起動している他の I<oneko> を目標にすることもできます。
+ルートウィンドウが選択された場合は、通常のようにマウスを追いかけます。
+目標ウィンドウが閉じられてはいないものの見えない時には、通常のようにマ
+ウスを追いかけます。
+目標ウィンドウが閉じられるとプログラムは終了します。
+
+=item B<-toname> I<name>
+
+猫は指定された名前のウィンドウをねずみの代わりに追いかけます。
+すでに起動している他の I<oneko> を目標にすることもできます。
+目標ウィンドウが閉じられてはいないものの見えない時には、通常のようにマ
+ウスを追いかけます。
+目標ウィンドウが閉じられるとプログラムは終了します。
+
+=item B<-tofocus>
+
+猫はフォーカスウィンドウに向かって走り、そしてその上部を走ります。
+フォーカスウィンドウが見えない時には、通常のようにマウスを追いかけます。
+
+=item B<-position> I<geometry>
+
+X と Y のオフセットを指定して猫のねずみへの相対位置を調整します。
+
+=item B<-rv>
+
+背景色と前景色を反転します。
+
+=item B<-noshape>
+
+SHAPE extension を使いません。
+
+=item B<-fg> I<color>
+
+前景色。
+
+=item B<-bg> I<color>
+
+背景色。
+
+=back
+
+=head2 リソース
+
+アプリケーション名は neko もしくは tora で、クラス名は Oneko です。
+
+=over
+
+=item B<tora>
+
+トラ猫を走らせたい場合には C<True> とします。
+
+=item B<time>
+
+アニメーションの間隔をマイクロ秒で設定します。
+
+=item B<speed>
+
+移動距離をピクセルで指定します。
+
+=item B<idle>
+
+逃げるねずみが猫の目を覚まさせるに至るスピードを指定します。
+
+=item B<noshape>
+
+SHAPE extension を使いたくない場合 C<True> とします。
+
+=item B<reverse>
+
+前景色と背景色を交換したい場合 C<True> とします。
+
+=item B<foreground>
+
+前景色。
+
+=item B<background>
+
+背景色。
+
+=back
+
+=head1 注釈
+
+このプログラムが C<XGetDefault> を利用している以上、 neko.resouce の形式
+を使うことに留意してください。
+ハードリンクあるいはソフトリンクによって、このプログラムを tora として
+起動した場合には、デフォルトで B<-tora> オプションが有効となります。
+
+BSD デーモンは  Marshall Kirk McKusick 氏の著作物です。すべての権利は
+保持されています。
+
+木之本桜および大道寺知世は漫画『カードキャプターさくら』（CLAMP, 講談
+社）のキャラクターであり、CLAMP 学園電子分校
+（http://www.clamp.f-2.co.jp/）に示されている容認のもとに利用されてい
+ます。
+
+=head1 作者
+
+オリジナルの I<xneko> は Masayuki Koba によって書かれ、
+そして Tatsuya Kato によって改変され I<oneko> となりました。
+その後 John Lerchey と Eric Anderson 、 Toshihiro Kanda 、および
+Kiichiroh Mukose によってさらに改変されました。
+
+=head1 保守者
+
+L<Ivan Trubach|mailto:mr.trubach@icloud.com>

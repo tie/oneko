@@ -22,7 +22,7 @@ The same arguments will work with GCC compiler.
 
 ### Usage
 
-See original [README files](doc) and [man pages](man).
+Read the [docs](doc).
 
 ## Versioning
 
