@@ -2,7 +2,7 @@
 
 Old project's README files and man pages are stored in the [archive](archive) directory.
 
-## Reading the the man pages
+## Man pages
 - [English](en)
 - [日本語](ja)
 
@@ -11,7 +11,7 @@ using pod2man, run the command below.
 
 ```sh
 lang=en # assuming you want to generate english man pages
-pod2man -u --lquote='`` ' --rquote="''" \
+pod2man -u --lquote='``' --rquote="''" \
   -s 6 -n oneko -r 1.2.sakura.5 -c 'oneko manual' \
    <$lang/README.pod >oneko.man
 ```
