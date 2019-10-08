@@ -1479,9 +1479,20 @@ GetArguments(int argc, char *argv[], char *theDisplayName)
     }
     else if (strcmp(argv[ArgCounter], "-position") == 0) {
       ArgCounter++;
-      unsigned int width, height;
-      XParseGeometry(argv[ArgCounter],&XOffset,&YOffset,&width,&height);
-      // FIXME: unused
+      // unsigned int width, height;
+      // X geometry strings are like: 
+      // [=][<width>{xX}<height>][{+-}<xoffset>{+-}<yoffset>]
+      sscanf(argv[ArgCounter], "%*d%*[xX]%*d%d%d", &XOffset, &YOffset);
+      // Tests:
+      // 100x200+1+2
+      // expect: XOffset = 1, YOffset = 2
+      // 100X100-1+3
+      // expect: XOffset = -1, YOffset = 3
+      // 10X109-3-9luotianyi66ccff
+      // expect: XOffset = -3, YOffset = -9
+      // 10x20yuezhengling
+      // expect: XOffset = 0, YOffset = 0
+      //XParseGeometry(argv[ArgCounter],&XOffset,&YOffset,&width,&height);
     }
     else if (strcmp(argv[ArgCounter], "-debug") ==0) {
       Synchronous = True;
