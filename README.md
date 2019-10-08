@@ -15,7 +15,7 @@ Neko runs over the windows
 Build system is not used because there is only one source file that includes all headers. The command below produces `oneko` executable on the majority of distributions.
 
 ```sh
-clang -Wno-parentheses -std=c11 -pedantic -lc -lm -lX11 -lXext -D_DEFAULT_SOURCE oneko.c -o oneko
+clang -Wno-parentheses -std=c11 -pedantic -D_DEFAULT_SOURCE oneko.c -o oneko -lc -lm -lX11 -lXext
 ```
 
 The same arguments will work with GCC compiler.
